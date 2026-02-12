@@ -95,7 +95,8 @@ unified agentic AI platform. It is deprecated as of 2026-01-10 due to:
 **Known constraints:**
 
 - WSL2 Ubuntu environment (no native Linux).
-- No GPU — CPU-only embeddings (fastembed).
+- RTX 3070 GPU available. Default to fastembed (CPU) for simplicity;
+  GPU-accelerated models are an option if retrieval quality demands it.
 - Solo developer — no team review capacity.
 - A2A protocol is pre-1.0 (v0.3), evolving rapidly.
 
@@ -150,7 +151,7 @@ justified by real bottlenecks.
 - MCP SDK for tool serving.
 - Postgres 16 for relational state.
 - Qdrant for vector search.
-- fastembed for CPU-only embeddings.
+- fastembed for embeddings (CPU default; GPU models available via RTX 3070).
 - Docker Compose for local development.
 
 **Decisions requiring options analysis and ADRs:**
@@ -168,10 +169,10 @@ Per Tier 3 ceremony (STD-032):
 
 - [x] Project intake: [project-intake.md](project-intake.md)
 - [x] Project proposal: this document
-- [ ] PRD: [requirements-prd.md](requirements-prd.md)
-- [ ] Project charter: [project-charter.md](../governance/project-charter.md)
-- [ ] Project roadmap: [project-roadmap.md](project-roadmap.md)
-- [ ] Backlog/milestones: [backlog-milestones.md](backlog-milestones.md)
+- [x] PRD: [requirements-prd.md](requirements-prd.md)
+- [x] Project charter: [project-charter.md](../governance/project-charter.md)
+- [x] Project roadmap: [project-roadmap.md](project-roadmap.md)
+- [x] Backlog/milestones: [backlog-milestones.md](backlog-milestones.md)
 - [ ] Architecture options analyses: [docs/architecture/](../architecture/)
 - [ ] ADRs (001-006): [docs/architecture/adr/](../architecture/adr/)
 - [ ] System design: [system-design.md](../design/system-design.md)

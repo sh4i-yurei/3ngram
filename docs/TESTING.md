@@ -75,6 +75,5 @@ Projects without documented testing strategy are non-compliant.
 
 - 0.2.2 - Set owner/reviewer/approver values.
 - 0.2.1 - Added owner/reviewer/approver frontmatter fields.
-
 - 0.2.0 - Added responsibilities and evidence expectations.
 - 0.1.0 - Initial draft.

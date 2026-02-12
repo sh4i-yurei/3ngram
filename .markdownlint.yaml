@@ -4,3 +4,13 @@ MD025: false
 MD013: false
 # Allow inline HTML for template placeholders.
 MD033: false
+# Allow duplicate headings in structured docs (e.g., "Description" and
+# "Acceptance Criteria" repeated per FR/NFR in PRDs, "Scope" in STD-001
+# 7-section template).
+MD024: false
+# Allow ordered lists to use continuous numbering across subheadings.
+MD029:
+  style: ordered
+# Fenced code blocks inside list items cannot have blank lines without
+# breaking list continuity. Disable for technical docs with embedded code.
+MD031: false
