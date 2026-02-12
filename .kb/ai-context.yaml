@@ -1,0 +1,5 @@
+# KB Integration — see STD-056
+kb_repo: sh4i-yurei/policies-and-standards
+kb_tag: v2.0.0
+index: INDEX.md
+entry_point: 00_Orientation/Onboarding.md

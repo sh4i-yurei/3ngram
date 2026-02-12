@@ -1,0 +1,38 @@
+# CI Caller Template
+#
+# Copy this file to .github/workflows/ci.yml in your project repo.
+# Adjust the `language` input to match your project's primary language.
+# For multi-language projects, duplicate gate-c and gate-d jobs with
+# different language inputs.
+#
+# This calls the reusable workflows defined in policies-and-standards.
+# See: CI_CD_Pipeline_Model (STD-030) for gate definitions.
+
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  gate-a-quint:
+    uses: sh4i-yurei/policies-and-standards/.github/workflows/gate-a-quint.yml@main
+
+  gate-b-docs:
+    uses: sh4i-yurei/policies-and-standards/.github/workflows/gate-b-docs.yml@main
+
+  gate-c-code:
+    uses: sh4i-yurei/policies-and-standards/.github/workflows/gate-c-code.yml@main
+    with:
+      language: python  # change to: python | node | rust | java
+
+  gate-d-tests:
+    uses: sh4i-yurei/policies-and-standards/.github/workflows/gate-d-tests.yml@main
+    with:
+      language: python  # change to: python | node | rust | java
+
+  gate-e-config:
+    uses: sh4i-yurei/policies-and-standards/.github/workflows/gate-e-config.yml@main
+
+  gate-f-security:
+    uses: sh4i-yurei/policies-and-standards/.github/workflows/gate-f-security.yml@main

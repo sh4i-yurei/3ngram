@@ -1,0 +1,23 @@
+# Editor
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# AI tools
+.aider*
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+htmlcov/
+results.json
