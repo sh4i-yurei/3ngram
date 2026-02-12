@@ -21,3 +21,5 @@ venv/
 .pytest_cache/
 htmlcov/
 results.json
+.env
+.env.*
