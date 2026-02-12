@@ -24,20 +24,21 @@ Store ExecPlans under `plans/exec_plans/<YYYY-MM-DD>_<short_slug>.md`.
 ## Current status
 
 **Phase**: Design (pre-implementation)
-**Current session work**: Project initiation — intake and proposal
-**Next**: PRD, Charter, Roadmap (Session 2)
+**Current milestone**: M1 (Planning) — complete
+**Last session**: Session 2 — planning artifacts (PRD, Charter, Roadmap, Backlog)
+**Next**: Session 3 — Architecture decisions (options analyses + ADRs)
 
 ### Completed artifacts
 
-- Project Intake (docs/planning/project-intake.md) — in progress
-- Project Proposal (docs/planning/project-proposal.md) — in progress
-
-### Pending artifacts
-
+- Project Intake (docs/planning/project-intake.md)
+- Project Proposal (docs/planning/project-proposal.md)
 - PRD (docs/planning/requirements-prd.md)
 - Project Charter (docs/governance/project-charter.md)
 - Project Roadmap (docs/planning/project-roadmap.md)
 - Backlog and Milestones (docs/planning/backlog-milestones.md)
+
+### Pending artifacts
+
 - Architecture Options Analyses (docs/architecture/)
 - ADRs 001-006 (docs/architecture/adr/)
 - System Design (docs/design/system-design.md)

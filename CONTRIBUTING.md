@@ -84,10 +84,9 @@ Track contribution friction, review turnaround time, and rework rates.
 Repositories without a contributing guide are non-compliant.
 
 # Changelog
-- 0.1.4 - Updated links for renamed engineering standards.
 
+- 0.1.4 - Updated links for renamed engineering standards.
 - 0.1.3 - Set owner/reviewer/approver values.
 - 0.1.2 - Added owner/reviewer/approver frontmatter fields.
-
 - 0.1.1 — Linked KB integration standard for AI-assisted work.
 - 0.1.0 — Initial draft.

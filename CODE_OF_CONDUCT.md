@@ -77,5 +77,4 @@ Violations of this code of conduct are subject to enforcement actions.
 
 - 0.1.2 - Set owner/reviewer/approver values.
 - 0.1.1 - Added owner/reviewer/approver frontmatter fields.
-
 - 0.1.0 - Initial draft.

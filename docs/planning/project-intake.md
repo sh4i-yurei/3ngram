@@ -90,7 +90,7 @@ when justified by real usage.
 - Skill mining or memory hygiene daemon.
 - Librarian Console UI.
 - Production deployment or multi-tenant support.
-- GPU-dependent embedding models.
+- Fine-tuning or training custom embedding models.
 
 ## Users and stakeholders
 
@@ -101,8 +101,9 @@ when justified by real usage.
 ## Constraints and assumptions
 
 - Technical: WSL2 Ubuntu, Python 3.12, Docker Desktop with WSL
-  integration. No GPU available — embeddings must use CPU-only models
-  (fastembed). A2A protocol is pre-1.0 (v0.3) and may evolve.
+  integration. RTX 3070 GPU available — fastembed (CPU) is the default
+  for simplicity, but GPU-accelerated models are viable if needed.
+  A2A protocol is pre-1.0 (v0.3) and may evolve.
 - Timeline: Long-term project. Design phase first, no rush to
   implementation. Quality over speed.
 - Budget/compliance: Personal project. No external compliance
