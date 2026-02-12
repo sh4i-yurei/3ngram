@@ -1,9 +1,5 @@
-# Pre-commit Config Template
-#
-# Copy this file to .pre-commit-config.yaml in your project repo.
-# Uncomment the language-specific sections that apply to your project.
-# This mirrors CI gates locally per STD-030 requirement:
-# "Local workflows MUST mirror CI to minimize drift."
+# Pre-commit hooks for 3ngram
+# Mirrors CI gates locally per STD-030.
 
 repos:
   # --- Universal hooks ---
@@ -18,63 +14,20 @@ repos:
       - id: check-json
       - id: check-merge-conflict
 
-  - repo: https://github.com/DavidAnson/markdownlint-cli2
-    rev: v0.17.1
+  # Use system-installed markdownlint-cli2 (avoids node version mismatch
+  # in pre-commit's sandboxed environment)
+  - repo: local
     hooks:
       - id: markdownlint-cli2
-        args: ["**/*.md"]
+        name: markdownlint-cli2
+        entry: bash -c 'export PATH="/home/mark/.nvm/versions/node/v24.11.0/bin:$PATH" && markdownlint-cli2 "$@"' --
+        language: system
+        types: [markdown]
 
-  # --- Python (uncomment if applicable) ---
-  # - repo: https://github.com/astral-sh/ruff-pre-commit
-  #   rev: v0.8.0
-  #   hooks:
-  #     - id: ruff
-  #       args: [--fix]
-  #     - id: ruff-format
-  #
-  # - repo: https://github.com/psf/black
-  #   rev: 24.10.0
-  #   hooks:
-  #     - id: black
-  #
-  # - repo: https://github.com/pre-commit/mirrors-mypy
-  #   rev: v1.13.0
-  #   hooks:
-  #     - id: mypy
-  #       additional_dependencies: []
-
-  # --- Node/TypeScript (uncomment if applicable) ---
-  # - repo: https://github.com/pre-commit/mirrors-eslint
-  #   rev: v9.15.0
-  #   hooks:
-  #     - id: eslint
-  #       additional_dependencies: []
-  #
-  # - repo: https://github.com/pre-commit/mirrors-prettier
-  #   rev: v4.0.0-alpha.8
-  #   hooks:
-  #     - id: prettier
-
-  # --- Rust (uncomment if applicable) ---
-  # - repo: local
-  #   hooks:
-  #     - id: cargo-fmt
-  #       name: cargo fmt
-  #       entry: cargo fmt --check
-  #       language: system
-  #       types: [rust]
-  #     - id: cargo-clippy
-  #       name: cargo clippy
-  #       entry: cargo clippy -- -D warnings
-  #       language: system
-  #       types: [rust]
-
-  # --- Quint freshness check ---
-  # - repo: local
-  #   hooks:
-  #     - id: quint-check
-  #       name: quint freshness
-  #       entry: bash -c 'test -d .quint && echo "Quint OK" || echo "WARN: .quint/ missing"'
-  #       language: system
-  #       always_run: true
-  #       pass_filenames: false
+  # --- Python ---
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.8.0
+    hooks:
+      - id: ruff
+        args: [--fix]
+      - id: ruff-format

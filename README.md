@@ -1,94 +1,63 @@
----
-id: TPL-PRJ-README
-title: README template
-version: 0.1.4
-category: project
-status: active
-owner: sh4i-yurei
-reviewer: sh4i-yurei
-approver: sh4i-yurei
-last_updated: 2026-02-12
-extends: [STD-001]
-tags: [template, readme, project]
----
-# Purpose
+# 3ngram
 
-Provide a standard README structure for governed projects.
+A kernel-governed memory OS for AI agents. Typed, versioned memory with
+agentic retrieval, policy-gated durable writes, and dual-protocol
+communication (MCP + A2A).
 
-# Scope
+## Motivation
 
-Use for all governed repositories.
+LLMs are fundamentally amnesic — fixed context windows, no durable state,
+hallucinations when retrieval fails. Existing RAG solutions treat memory
+as a library concern. 3ngram treats memory as an OS-level kernel with
+mandatory invariants, typed memory, and self-healing mechanisms.
 
-# Standard
+This project replaces the deprecated `ai_tech_stack` repository, applying
+lessons learned from that attempt.
 
-## Template
+## Status
 
-### <project name>
+**Tier 3 design phase** — all architecture and design artifacts are being
+produced before any implementation code is written.
 
-Short summary of what the project does and who it is for.
+See `PLANS.md` for current progress and `docs/` for design artifacts.
 
-#### Motivation
+## Architecture overview
 
-Why this project exists and the problem it solves.
+(Design in progress — see `docs/design/system-design.md` when available)
 
-#### Quick start
+Core concepts:
 
-- Prerequisites: <tools, versions>
-- Install/setup: <commands>
-- Run: <command>
-- Sample usage: <cli/api snippet>
+- **Memory Kernel**: Typed records (Decision, Belief, Episode, Skill) with
+  temporal awareness and versioning
+- **Agentic Retrieval**: 6-stage pipeline with hybrid search, validation,
+  and bounded retries
+- **Librarian Gate**: No durable memory write without policy authorization
+- **Dual Protocol**: MCP (agent-to-tools) + A2A v0.3 (agent-to-agent)
+- **Monolith-first**: Single Python service with clear module boundaries
 
-#### Architecture overview
+## Quick start
 
-Brief description plus links to architecture, design, and ADRs.
+Prerequisites and setup instructions will be added after the design
+phase completes.
 
-#### Development workflow
+## Development workflow
 
-- Branch strategy: <link or summary>
-- How to use AI assistance in this repo (see [KB_Integration_Standard](../../../03_Engineering_Standards/KB_Integration_Standard.md)
-  and `AGENTS.md`).
-- Required checks before PR merge.
+- Branch strategy: `<type>/<short-name>`, squash merge, PR-based
+- AI assistance governed by `AGENTS.md` and `.kb/ai-context.yaml`
+- CI gates A-F per STD-030
 
-#### Testing
+## Testing
 
-How to run tests locally and in CI. Note required coverage or gates.
+Testing strategy and commands will be added after specification phase.
 
-#### Configuration
+## Documentation
 
-Where config lives, key environment variables, and secrets handling.
+- [Project Intake](docs/planning/project-intake.md)
+- [Project Proposal](docs/planning/project-proposal.md)
+- [AGENTS.md](AGENTS.md) — AI agent behavior rules
+- [PLANS.md](PLANS.md) — ExecPlan requirements and progress
 
-#### Documentation
+## Contributing
 
-Links to project docs (architecture, specs, testing, style guide,
-runbooks).
-
-#### License
-
-Link to `LICENSE`.
-
-#### Contributing
-
-Link to [CONTRIBUTING](./CONTRIBUTING.md) and
-[CODE_OF_CONDUCT](./CODE_OF_CONDUCT.md).
-
-# Implementation Notes
-
-- Keep README links current with repo structure.
-- Prefer concise sections; link out for deep detail.
-
-# Continuous Improvement and Compliance Metrics
-
-Track README accuracy during release readiness reviews.
-
-# Compliance
-
-Repositories without a README are non-compliant.
-
-# Changelog
-- 0.1.4 - Updated links for renamed engineering standards.
-
-- 0.1.3 - Set owner/reviewer/approver values.
-- 0.1.2 - Added owner/reviewer/approver frontmatter fields.
-
-- 0.1.1 - Linked KB integration standard in development workflow.
-- 0.1.0 — Initial draft.
+See [CONTRIBUTING.md](CONTRIBUTING.md) and
+[CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md).
