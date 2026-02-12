@@ -75,15 +75,15 @@ via A2A.
 
 | Deliverable | Status |
 | ------------- | -------- |
-| Options Analysis: Architecture Style | Pending |
-| Options Analysis: Protocol Strategy | Pending |
-| ADR-001: Monolith-first architecture | Pending |
-| ADR-002: Dual protocol (MCP + A2A) | Pending |
-| ADR-003: Storage backend (Postgres + Qdrant) | Pending |
-| ADR-004: Embedding model selection | Pending |
-| ADR-005: Agent role architecture | Pending |
-| ADR-006: Knowledge graph approach | Pending |
-| Quint decisions recorded | Pending |
+| Options Analysis: Architecture Style | Done |
+| Options Analysis: Protocol Strategy | Done |
+| ADR-001: Monolith-first architecture | Done |
+| ADR-002: Dual protocol (MCP + A2A) | Done |
+| ADR-003: Storage backend (Postgres + pgvector) | Done |
+| ADR-004: Embedding model selection | Done |
+| ADR-005: Agent role architecture | Done |
+| ADR-006: Knowledge graph approach | Done |
+| Quint decisions recorded | Done |
 
 **Exit criteria:** All ADRs accepted, options analyses completed,
 Quint decisions at L2+.
@@ -202,6 +202,7 @@ Compose stack runs end-to-end.
 | ------ | -------- |
 | 2026-02-12 | Session 1: Repo scaffolded, Intake + Proposal drafted, PR #1 merged. |
 | 2026-02-12 | Session 2: Charter, PRD, Roadmap, Backlog completed. M1 (Planning) complete. |
+| 2026-02-12 | Session 3: Options analyses + ADRs 001-006. ADR-003 changed storage to Postgres+pgvector (was Qdrant). M2 (Architecture) complete. |
 
 ## Links
 

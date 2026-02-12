@@ -20,7 +20,7 @@ for durable memory writes.
 
 - Python 3.12, FastAPI, Pydantic
 - a2a-sdk, MCP SDK
-- Postgres (state/audit), Qdrant (vectors), fastembed (embeddings)
+- Postgres + pgvector (state/audit/vectors), fastembed (embeddings)
 - Docker Compose for local dev
 
 ## Project structure
