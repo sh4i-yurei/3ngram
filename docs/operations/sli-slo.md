@@ -51,7 +51,7 @@ CLS engine is deployed.
 
 | Field | Value |
 |---|---|
-| Target | 99% of auto-approve decisions complete in < 200ms (p95) |
+| Target | 99% of auto-approve decisions complete in < 200ms (p99) |
 | Compliance window | 30 days |
 | Error budget | 1% of Gate decisions may exceed 200ms (~300 over 30K writes/month) |
 | Owner | sh4i-yurei |

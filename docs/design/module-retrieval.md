@@ -213,7 +213,7 @@ class ConflictPair:
 | Knowledge graph | `engram.infra.graph` | NetworkX graph for PageRank traversal (ADR-009, Phase 2+) | Infrastructure layer -- accessed via `GraphAdapter` Protocol |
 | Memory types | `engram.memory.types` | `MemoryRecord` schema, `MemoryType` enum, `AccessLevel` enum | Domain layer -- same kernel, typed interface |
 | Temporal engine | `engram.memory.temporal` | Bi-temporal queries (`as_of_event`, `as_of_ingestion`), version chain lookups | Domain layer -- read-only access to temporal state |
-| Agent identity | `engram.protocols` | `AgentContext` with authenticated identity and trust level | Protocol layer -- trust boundary at authentication |
+| Agent identity | `engram.types` | `AgentContext` with authenticated identity and trust level | Shared types -- protocol layer authenticates, retrieval consumes |
 
 ### External libraries
 
@@ -231,6 +231,8 @@ class ConflictPair:
 
 Per ADR-001 and the system design import-linter configuration:
 
+- `engram.retrieval` MAY import from `engram.types` (shared types
+  including `AgentContext`)
 - `engram.retrieval` MAY import from `engram.memory.types` (type
   definitions) and `engram.memory.temporal` (bi-temporal queries,
   version chain lookups)

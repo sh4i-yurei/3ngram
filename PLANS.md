@@ -24,7 +24,7 @@ Store ExecPlans under `plans/exec_plans/<YYYY-MM-DD>_<short_slug>.md`.
 ## Current status
 
 **Phase**: Design (pre-implementation)
-**Current milestone**: M3 (System Design) — in progress
+**Current milestone**: M3 (System Design) — complete
 **Last session**: Session 6 — Critical review, cross-artifact fixes, charter v0.2.1, design review PASS
 **Next**: Session 7 — PR to main, specification phase prep
 
@@ -53,16 +53,13 @@ Store ExecPlans under `plans/exec_plans/<YYYY-MM-DD>_<short_slug>.md`.
 - ADR-012: Hybrid Librarian Gate (docs/architecture/adr/ADR-012-hybrid-librarian-gate.md)
 - SLI/SLO Targets v0.1.0 (docs/operations/sli-slo.md)
 - Risk Register v0.1.0 (docs/governance/risk-register.md)
-
-### Pending artifacts
-
 - Module Design: Memory (docs/design/module-memory.md)
 - Module Design: Retrieval (docs/design/module-retrieval.md)
 - Module Design: Autonomy (docs/design/module-autonomy.md)
 - Module Design: Infrastructure (docs/design/module-infrastructure.md)
 - Project Charter v0.2.1 (docs/governance/project-charter.md)
 
-### Pending artifacts
+### Stage 3 artifacts (pending)
 
 - Technical Specification (docs/specs/technical-specification.md) — Stage 3
 - Schema Definitions (docs/design/schemas/) — Stage 3

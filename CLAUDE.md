@@ -17,12 +17,12 @@ artifacts must be completed before writing code (STD-020).
 
 ## Current progress
 
-Track session state in `PLANS.md` (last session: Session 4). Key milestones:
+Track session state in `PLANS.md` (last session: Session 6). Key milestones:
 
 - **M1** (Planning): intake, proposal, PRD, charter, roadmap, backlog
 - **M2** (Architecture): options analyses + ADRs 001-012
 
-**Current**: M3 complete — system design v0.1.2, 4 module designs,
+**Current**: M3 complete — system design v0.1.3, 4 module designs,
 SLI/SLO, risk register, charter v0.2.1. Design review PASS (45/45).
 **Next**: Stage 3 (Specification) — technical specs and schema definitions.
 
