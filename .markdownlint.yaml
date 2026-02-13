@@ -14,3 +14,5 @@ MD029:
 # Fenced code blocks inside list items cannot have blank lines without
 # breaking list continuity. Disable for technical docs with embedded code.
 MD031: false
+# Allow compact table style (|col|col|) used throughout this repo.
+MD060: false

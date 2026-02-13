@@ -24,9 +24,9 @@ Store ExecPlans under `plans/exec_plans/<YYYY-MM-DD>_<short_slug>.md`.
 ## Current status
 
 **Phase**: Design (pre-implementation)
-**Current milestone**: M2 (Architecture Decisions) — complete
-**Last session**: Session 3 — Architecture decisions (options analyses + ADRs)
-**Next**: Session 4 — System design, threat model, SLI/SLO, risk register
+**Current milestone**: M3 (System Design) — in progress
+**Last session**: Session 6 — Critical review, cross-artifact fixes, charter v0.2.1, design review PASS
+**Next**: Session 7 — PR to main, specification phase prep
 
 ### Completed artifacts
 
@@ -44,16 +44,54 @@ Store ExecPlans under `plans/exec_plans/<YYYY-MM-DD>_<short_slug>.md`.
 - ADR-004: fastembed (docs/architecture/adr/ADR-004-embedding-model.md)
 - ADR-005: Agent roles as Protocol classes (docs/architecture/adr/ADR-005-agent-roles.md)
 - ADR-006: Knowledge graph deferred (docs/architecture/adr/ADR-006-knowledge-graph.md)
+- System Design v0.1.3 (docs/design/system-design.md)
+- ADR-007: Embedding adapter (docs/architecture/adr/ADR-007-embedding-adapter.md)
+- ADR-008: Expanded agent architecture (docs/architecture/adr/ADR-008-expanded-agent-architecture.md)
+- ADR-009: Knowledge graph Phase 2 (docs/architecture/adr/ADR-009-knowledge-graph-phase2.md)
+- ADR-010: CLS consolidation (docs/architecture/adr/ADR-010-cls-consolidation.md)
+- ADR-011: HippoRAG retrieval (docs/architecture/adr/ADR-011-hipporag-retrieval.md)
+- ADR-012: Hybrid Librarian Gate (docs/architecture/adr/ADR-012-hybrid-librarian-gate.md)
+- SLI/SLO Targets v0.1.0 (docs/operations/sli-slo.md)
+- Risk Register v0.1.0 (docs/governance/risk-register.md)
 
 ### Pending artifacts
 
-- System Design (docs/design/system-design.md)
-- Module Designs (docs/design/module-*.md)
-- Threat Model (docs/operations/threat-model.md)
-- SLI/SLO (docs/operations/sli-slo.md)
-- Risk Register (docs/governance/risk-register.md)
-- Technical Specification (docs/specs/technical-specification.md)
-- Schema Definitions (docs/design/schemas/)
+- Module Design: Memory (docs/design/module-memory.md)
+- Module Design: Retrieval (docs/design/module-retrieval.md)
+- Module Design: Autonomy (docs/design/module-autonomy.md)
+- Module Design: Infrastructure (docs/design/module-infrastructure.md)
+- Project Charter v0.2.1 (docs/governance/project-charter.md)
+
+### Pending artifacts
+
+- Technical Specification (docs/specs/technical-specification.md) — Stage 3
+- Schema Definitions (docs/design/schemas/) — Stage 3
+
+### Key decisions (Session 6)
+
+- **Critical quality review**: 5 parallel review agents audited all 4 module designs + cross-artifact consistency. Memory scored 9.5/10 (clean), others had actionable issues.
+- **Retrieval fixes (7)**: Broken system design section refs, PageRank limits corrected, `include_historical` flag added to RetrievalQuery, retry escalation logic fixed, ProcessPoolExecutor → `asyncio.to_thread()`, latency buffer reduced.
+- **Autonomy fixes (5)**: Wrong ADR-008 scheduling ref → ADR-001, "symptom table" → "critical failure scenarios", PII cross-ref sharpened.
+- **Infrastructure fixes (4)**: EventBus handler typed as async callable, graph rebuild atomic swap documented, outbox worker restart clarified, pending refs → STD-055/STD-023 citations.
+- **Charter v0.2.1**: All Qdrant references replaced with Postgres+pgvector per ADR-003 (9 edits across goals, constraints, assumptions, risks, implementation steps).
+- **Cross-artifact cleanup**: Deleted garbage template file, added superseded ADR notes to AI_CONTEXT.md, PRD disclaimer added (frozen baseline).
+- **Design review re-run**: PASS (45/45 STD-024 checklist items).
+
+### Key decisions (Session 5)
+
+- **3 CRITICALs resolved**: Gate bypass via consolidation (internal write path added), no concurrency control (optimistic locking added), PII regex overclaim (reclassified as best-effort). System design bumped to v0.1.1.
+- **Threat model approach**: Embedded in module designs per STD-007, not a standalone document. System design updated to v0.1.2.
+- **SLI/SLO targets**: 6 critical paths defined per STD-043 — Gate latency, retrieval latency, embedding latency, uptime, audit completeness, consolidation retention.
+- **Risk register**: 20 risks across security (5), reliability (8), delivery (4), compliance (3). RSK-014 (solo developer) accepted.
+- **Parallel execution**: M3 work split across 3 Claude instances — Instance 1 (Memory + Retrieval modules), Instance 2 (Autonomy + Infrastructure modules), Instance 3 (SLI/SLO + risk register + governance).
+
+### Key decisions (Session 4)
+
+- **v2 scope expansion**: System design synthesizes v2 feature spec with M1/M2 artifacts. 8 memory types (up from 4), HippoRAG retrieval, CLS consolidation, RL Gate Advisor, 5-phase delivery plan.
+- **ADR-004 superseded**: Embedding adapter interface replaces fixed fastembed model (ADR-007).
+- **ADR-005 superseded**: Expanded agent architecture with RL components (ADR-008).
+- **ADR-006 superseded**: Knowledge graph promoted to Phase 2 scope (ADR-009).
+- **New patterns**: CLS dual-path consolidation (ADR-010), HippoRAG retrieval pipeline (ADR-011), hybrid Librarian Gate (ADR-012).
 
 ### Key architecture decisions (Session 3)
 
