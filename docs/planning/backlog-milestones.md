@@ -1,13 +1,13 @@
 ---
 id: 3NGRAM-BACKLOG-001
 title: "3ngram: Agentic RAG Memory System — Backlog and Milestones"
-version: 0.1.0
+version: 0.2.0
 category: project
 status: active
 owner: sh4i-yurei
 reviewer: sh4i-yurei
 approver: sh4i-yurei
-last_updated: 2026-02-12
+last_updated: 2026-02-13
 extends: [STD-001, STD-003, STD-032]
 tags: [backlog, milestones, planning, 3ngram]
 ---
@@ -43,15 +43,21 @@ project proposal but not tracked here until a phase 2 backlog is created.
 
 | ID | Item | Owner | Status | Depends on |
 | ---- | ------ | ------- | -------- | ------------ |
-| A-01 | Options Analysis: Architecture Style | sh4i-yurei | Pending | M1 |
-| A-02 | Options Analysis: Protocol Strategy | sh4i-yurei | Pending | M1 |
-| A-03 | ADR-001: Monolith-first architecture | sh4i-yurei | Pending | A-01 |
-| A-04 | ADR-002: Dual protocol (MCP + A2A) | sh4i-yurei | Pending | A-02 |
-| A-05 | ADR-003: Storage backend | sh4i-yurei | Pending | A-01 |
-| A-06 | ADR-004: Embedding model | sh4i-yurei | Pending | A-01 |
-| A-07 | ADR-005: Agent role architecture | sh4i-yurei | Pending | A-01 |
-| A-08 | ADR-006: Knowledge graph approach | sh4i-yurei | Pending | A-01 |
-| A-09 | Quint decisions recorded (all ADRs) | sh4i-yurei | Pending | A-03 through A-08 |
+| A-01 | Options Analysis: Architecture Style | sh4i-yurei | Done | M1 |
+| A-02 | Options Analysis: Protocol Strategy | sh4i-yurei | Done | M1 |
+| A-03 | ADR-001: Monolith-first architecture | sh4i-yurei | Done | A-01 |
+| A-04 | ADR-002: Dual protocol (MCP + A2A) | sh4i-yurei | Done | A-02 |
+| A-05 | ADR-003: Storage backend (Postgres+pgvector) | sh4i-yurei | Done | A-01 |
+| A-06 | ADR-004: Embedding model (superseded by A-12) | sh4i-yurei | Done | A-01 |
+| A-07 | ADR-005: Agent role architecture (superseded by A-13) | sh4i-yurei | Done | A-01 |
+| A-08 | ADR-006: Knowledge graph approach (superseded by A-14) | sh4i-yurei | Done | A-01 |
+| A-09 | Quint decisions recorded (all ADRs) | sh4i-yurei | Done | A-03 through A-08 |
+| A-10 | ADR-010: CLS consolidation | sh4i-yurei | Done | A-01 |
+| A-11 | ADR-011: HippoRAG retrieval | sh4i-yurei | Done | A-01 |
+| A-12 | ADR-007: Embedding adapter (supersedes A-06) | sh4i-yurei | Done | A-06 |
+| A-13 | ADR-008: Expanded agent architecture (supersedes A-07) | sh4i-yurei | Done | A-07 |
+| A-14 | ADR-009: Knowledge graph Phase 2 (supersedes A-08) | sh4i-yurei | Done | A-08 |
+| A-15 | ADR-012: Hybrid Librarian Gate | sh4i-yurei | Done | A-01 |
 
 ---
 
@@ -59,16 +65,16 @@ project proposal but not tracked here until a phase 2 backlog is created.
 
 | ID | Item | Owner | Status | Depends on |
 | ---- | ------ | ------- | -------- | ------------ |
-| D-01 | System Design (15 sections) | sh4i-yurei | Pending | M2 |
-| D-02 | Module: Memory Kernel | sh4i-yurei | Pending | D-01 |
-| D-03 | Module: Retrieval Engine | sh4i-yurei | Pending | D-01 |
-| D-04 | Module: Librarian Gate | sh4i-yurei | Pending | D-01 |
-| D-05 | Module: MCP Endpoint | sh4i-yurei | Pending | D-01 |
-| D-06 | Module: A2A Endpoint | sh4i-yurei | Pending | D-01 |
-| D-07 | Threat Model | sh4i-yurei | Pending | D-01 |
-| D-08 | SLI/SLO Targets | sh4i-yurei | Pending | D-01 |
-| D-09 | Risk Register | sh4i-yurei | Pending | D-01 |
-| D-10 | Design Review (AI red-team pass) | sh4i-yurei | Pending | D-02 through D-09 |
+| D-01 | System Design v0.1.3 (15 sections) | sh4i-yurei | Done | M2 |
+| D-02 | Module: Memory | sh4i-yurei | Done | D-01 |
+| D-03 | Module: Retrieval | sh4i-yurei | Done | D-01 |
+| D-04 | Module: Autonomy | sh4i-yurei | Done | D-01 |
+| D-05 | Module: Infrastructure | sh4i-yurei | Done | D-01 |
+| D-06 | Threat analysis (embedded in module designs per STD-007) | sh4i-yurei | Done | D-02 through D-05 |
+| D-07 | SLI/SLO Targets | sh4i-yurei | Done | D-01 |
+| D-08 | Risk Register | sh4i-yurei | Done | D-01 |
+| D-09 | Charter v0.2.1 (Qdrant → pgvector alignment) | sh4i-yurei | Done | D-01 |
+| D-10 | Design Review (STD-024, 45/45 PASS) | sh4i-yurei | Done | D-02 through D-08 |
 
 ---
 
@@ -91,7 +97,7 @@ project proposal but not tracked here until a phase 2 backlog is created.
 | ID | Item | Owner | Status | Depends on |
 | ---- | ------ | ------- | -------- | ------------ |
 | I-01 | Memory kernel (Postgres schema, typed CRUD) | sh4i-yurei | Pending | M4, S-02 |
-| I-02 | Embedding + vector adapter (fastembed + Qdrant) | sh4i-yurei | Pending | I-01 |
+| I-02 | Embedding + vector adapter (fastembed + pgvector) | sh4i-yurei | Pending | I-01 |
 | I-03 | Retrieval engine (hybrid search, validation) | sh4i-yurei | Pending | I-02 |
 | I-04 | Librarian gate (policy enforcement) | sh4i-yurei | Pending | I-01 |
 | I-05 | MCP endpoint (tool exposure) | sh4i-yurei | Pending | I-03, I-04 |
@@ -115,6 +121,21 @@ project proposal but not tracked here until a phase 2 backlog is created.
 | R-06 | CI gates E-F pass | sh4i-yurei | Pending | I-10 |
 | R-07 | README finalized | sh4i-yurei | Pending | M5 |
 | R-08 | Design post-mortem | sh4i-yurei | Pending | R-05 |
+
+### Phase 2+ Investigation Items
+
+These are not committed scope. They are investigation items that should
+surface during Phase 2 specification planning to ensure extension points
+are not lost.
+
+| ID | Item | Owner | Status | Phase | Notes |
+| ---- | ------ | ------- | -------- | ------- | ------- |
+| EXT-01 | Evaluate ingestion adapter pattern | sh4i-yurei | Pending | 2+ | Docling, Markitdown, git history import |
+| EXT-02 | Design notification channel adapter | sh4i-yurei | Pending | 2+ | Slack, email, desktop beyond webhook |
+| EXT-03 | Evaluate custom retrieval strategy plugin | sh4i-yurei | Pending | 2+ | Custom search beyond vector/BM25/graph |
+| EXT-04 | Evaluate Gate policy extensibility | sh4i-yurei | Pending | 2+ | Loadable approval rules beyond built-in |
+
+---
 
 ## Dependencies and sequencing
 
@@ -165,4 +186,9 @@ Tier 3 projects without a backlog are non-compliant per STD-032.
 
 # Changelog
 
+- 0.2.0 — Updated M2/M3 statuses to Done, aligned M3 items with actual
+  deliverables (module designs are Memory/Retrieval/Autonomy/Infrastructure,
+  threat model embedded per STD-007, charter v0.2.1 added), added ADRs
+  007-012 to M2, fixed M5 Qdrant → pgvector, added Phase 2+ extension
+  point investigation items (EXT-01 through EXT-04).
 - 0.1.0 — Initial backlog for 3ngram project.

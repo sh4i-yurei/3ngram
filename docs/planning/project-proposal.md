@@ -173,8 +173,8 @@ Per Tier 3 ceremony (STD-032):
 - [x] Project charter: [project-charter.md](../governance/project-charter.md)
 - [x] Project roadmap: [project-roadmap.md](project-roadmap.md)
 - [x] Backlog/milestones: [backlog-milestones.md](backlog-milestones.md)
-- [ ] Architecture options analyses: [docs/architecture/](../architecture/)
-- [ ] ADRs (001-006): [docs/architecture/adr/](../architecture/adr/)
+- [x] Architecture options analyses: [docs/architecture/](../architecture/)
+- [x] ADRs (001-006): [docs/architecture/adr/](../architecture/adr/)
 - [ ] System design: [system-design.md](../design/system-design.md)
 - [ ] Module designs: docs/design/module-*.md
 - [ ] Threat model: [threat-model.md](../operations/threat-model.md)

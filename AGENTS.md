@@ -6,7 +6,8 @@ artifacts.
 
 ## Required behavior
 
-- Read `.kb/ai-context.yaml` before any design, spec, or code changes.
+- Read `AI_CONTEXT.md`, `.kb/ai-context.yaml`, and `PLANS.md` before
+  any design, spec, or code changes (STD-056 section 4).
 - Read `PLANS.md` to determine ExecPlan requirements.
 - Retrieve and cite relevant KB standards and workflows.
 - Use approved templates and follow the SDLC stages in
@@ -33,8 +34,9 @@ artifacts.
 
 ## Repository AI artifacts
 
-- `.kb/ai-context.yaml` (KB reference and applicable standards)
-- `PLANS.md` (ExecPlan criteria)
+- `AI_CONTEXT.md` (context pack — standards, rule packs, key files)
+- `.kb/ai-context.yaml` (KB reference and pinning)
+- `PLANS.md` (ExecPlan criteria and session progress)
 - `.claude/skills/<skill-name>/SKILL.md` (repo-local skills)
 
 ## KB reference

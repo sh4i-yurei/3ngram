@@ -1,13 +1,13 @@
 ---
 id: 3NGRAM-CHARTER-001
 title: "3ngram: Agentic RAG Memory System — Project Charter"
-version: 0.1.0
+version: 0.2.1
 category: project
 status: active
 owner: sh4i-yurei
 reviewer: sh4i-yurei
 approver: sh4i-yurei
-last_updated: 2026-02-12
+last_updated: 2026-02-13
 extends: [STD-001, STD-032, STD-054]
 tags: [charter, governance, 3ngram, tier-3]
 ---
@@ -136,14 +136,15 @@ This is the foundation every agentic system needs but doesn't have.
 **MVP Goals (In Scope):**
 
 1. **Typed Memory Records**
-   - Four record types: Decision, Belief, Episode, Skill
-   - Postgres for structured data, Qdrant for vector embeddings
+   - Eight record types: Decision, Belief, Episode, Skill, Entity, Preference, Reflection, Resource
+   - Postgres+pgvector for unified structured and vector storage (ADR-003)
    - Versioning, metadata, provenance tracking
 
 2. **Agentic Retrieval Pipeline**
+   - HippoRAG-inspired architecture with adaptive query routing
    - 6-stage pipeline: Plan → Retrieve (hybrid) → Rerank → Validate → Retry → Assemble
    - Planner agent generates retrieval strategy from query
-   - Hybrid search (semantic + keyword) across Postgres + Qdrant
+   - Hybrid search (semantic + keyword) via pgvector + Postgres full-text search
    - Reranker scores and filters results
    - Validator checks relevance and quality
    - Retry logic for low-confidence results
@@ -151,6 +152,7 @@ This is the foundation every agentic system needs but doesn't have.
 
 3. **Librarian Authorization Gate**
    - No durable write to memory without Librarian approval
+   - Hybrid architecture: declarative rules (hard constraints) + RL-trained advisor (Phase 3)
    - Prevents corruption, enforces schema, maintains integrity
    - Authorizes record creation, updates, deletions
    - Rejects malformed or unauthorized requests
@@ -180,29 +182,29 @@ This is the foundation every agentic system needs but doesn't have.
 
 **Deferred Goals (Post-MVP):**
 
-- Knowledge graph (entity relationships, inference)
-- Additional agent roles (Archivist, Synthesizer, Curator)
 - Workspace Adapter (filesystem integration)
 - GitHub Control Plane (issue/PR memory)
 - CLI Gateway (terminal interface)
 - Skill mining (code → reusable skill extraction)
 - Memory hygiene daemon (staleness detection, cleanup)
 - Librarian Console UI (admin interface)
-- Production deployment (k8s, monitoring, SRE)
+- Multi-user support (Phase 5)
+- Production Kubernetes deployment (Phase 5)
+- Non-English language support
 - Multi-tenant support (isolation, quotas, RBAC)
 
 ### 5. Non-Goals and Exclusions
 
 **Explicit Non-Goals (Will NOT Build):**
 
-- **Real-time knowledge graphs:** No Neo4j, no entity resolution, no graph inference. Postgres relations only.
+- **Production knowledge graph:** NetworkX prototyping is in Phase 2 scope; Neo4j production migration is deferred to post-Phase 4.
 - **Custom model training:** No fine-tuning, no custom model training. Use pre-trained models only.
 - **Production-grade deployment:** No Kubernetes, no Terraform, no monitoring stack. Docker Compose only.
 - **Multi-user/multi-tenant:** Single user (Mark), single agent context, no RBAC.
 - **Web UI/dashboard:** Terminal and MCP only. No React, no web server.
 - **Skill execution engine:** Skill records are data. No runtime, no sandboxing.
 - **Memory analytics/insights:** No aggregation, no trend detection, no reports.
-- **Distributed consensus:** Single-node Postgres and Qdrant. No replication.
+- **Distributed consensus:** Single-node Postgres. No replication.
 - **Third-party integrations:** No Slack, no Notion, no external APIs beyond A2A/MCP.
 
 **Out of Scope (Not Addressed):**
@@ -222,7 +224,7 @@ This is the foundation every agentic system needs but doesn't have.
 - **Language:** Python 3.12
 - **GPU:** RTX 3070 available. Default to fastembed (CPU) for simplicity;
   GPU-accelerated models (SentenceTransformers/CUDA) viable if needed.
-- **Database:** Postgres 16+ (structured data), Qdrant 1.7+ (vector store)
+- **Database:** Postgres 16+ with pgvector extension (unified storage per ADR-003)
 - **Embedding Model:** fastembed (default); GPU models available behind adapter
 - **Protocol Versions:** MCP (stable), A2A v0.3 (pre-1.0, breaking changes possible)
 - **Deployment:** Docker Compose (no orchestration, no clustering)
@@ -246,14 +248,14 @@ This is the foundation every agentic system needs but doesn't have.
 
 - A2A protocol v0.3 is stable enough for MVP (adapter pattern mitigates risk)
 - fastembed embedding quality is sufficient for retrieval (evaluation metrics will validate)
-- Postgres + Qdrant can handle single-user load without optimization
+- Postgres+pgvector can handle single-user load without optimization
 - MCP protocol remains stable through MVP development
 - WSL2 performance is adequate (no Windows filesystem bottlenecks)
 
 **Dependency Assumptions:**
 
 - Docker Desktop WSL integration is enabled and functional
-- Postgres and Qdrant official Docker images are available
+- Postgres official Docker image is available (pgvector extension included)
 - Python 3.12 and pip3 are installed and working
 - GitHub Actions runners (ubuntu-latest) support required tooling
 
@@ -265,7 +267,7 @@ This is the foundation every agentic system needs but doesn't have.
 | R-002 | **Scope creep from vault notes** (expansive vision) | High (delays) | High | Strict MVP boundary in charter; explicit deferred list; gate approvals |
 | R-003 | **Solo developer bottleneck** (no peer review) | Medium (blind spots) | High | AI red-team for system design; Quint decision tracking; KB governance |
 | R-004 | **Embedding model accuracy insufficient** | Medium (poor retrieval) | Medium | Adapter interface for model swaps; evaluation metrics; reranker compensates |
-| R-005 | **Postgres/Qdrant performance degradation** | Low (slow queries) | Low | Single-user load is minimal; indexing strategy; monitoring hooks |
+| R-005 | **Postgres+pgvector performance degradation** | Low (slow queries) | Low | Single-user load is minimal; HNSW indexing strategy; monitoring hooks |
 | R-006 | **WSL2 instability or filesystem issues** | Medium (dev env) | Low | Regular backups; Docker volume isolation; no Windows path dependencies |
 | R-007 | **MCP protocol changes** (rare but possible) | Medium (interface rewrites) | Low | MCP is stable; adapter pattern; monitor SDK releases |
 | R-008 | **Librarian gate bypass via bug** | High (data corruption) | Low | Unit tests for auth logic; integration tests; red-team validation |
@@ -305,7 +307,7 @@ This is the foundation every agentic system needs but doesn't have.
 **Implementation (After Spec Approval):**
 
 1. Infrastructure scaffolding (Docker Compose, CI/CD, Quint init)
-2. Schema and migrations (Postgres, Qdrant)
+2. Schema and migrations (Postgres+pgvector)
 3. Core modules (Librarian gate, retrieval pipeline)
 4. Protocol endpoints (MCP server, A2A adapter)
 5. Researcher agent (end-to-end integration)
@@ -436,6 +438,34 @@ None permitted during MVP. Charter governs scope and governance. Deviations requ
 
 ## Changelog
 
+### [0.2.1] - 2026-02-13
+
+**Changed:**
+
+- Replaced all Qdrant references with Postgres+pgvector per ADR-003
+  (unified storage decision). Affected: MVP goals, non-goals, technical
+  constraints, assumptions, dependency assumptions, risks, implementation
+  steps, and changelog v0.1.0 entry.
+
+**References:**
+
+- ADR-003: docs/architecture/adr/ADR-003-storage-backend.md
+
+### [0.2.0] - 2026-02-13
+
+**Changed:**
+
+- Expanded typed memory from 4 to 8 record types (added Entity, Preference, Reflection, Resource)
+- Promoted knowledge graph from non-goal to Phase 2 scope (NetworkX prototyping)
+- Expanded agent roles from 2 to full autonomous component architecture
+- Added hybrid Librarian Gate architecture (declarative rules + RL advisor)
+- Updated deferred goals list to reflect v2 phasing
+
+**References:**
+
+- System Design: docs/design/system-design.md (3NGRAM-SD-001)
+- ADRs 007-012: v2 architectural decisions
+
 ### [0.1.0] - 2026-02-12
 
 **Added:**
@@ -445,7 +475,7 @@ None permitted during MVP. Charter governs scope and governance. Deviations requ
 - Problem statement (LLM amnesia, bolt-on RAG failure, naive architecture lesson)
 - MVP goals (6 core capabilities: typed records, agentic retrieval, Librarian gate, MCP, A2A, Researcher agent)
 - Explicit non-goals and deferred features (knowledge graph, GPU, production, multi-tenant)
-- Constraints (WSL2, Python 3.12, Postgres/Qdrant, A2A v0.3, solo developer)
+- Constraints (WSL2, Python 3.12, Postgres+pgvector, A2A v0.3, solo developer)
 - Risk register (10 risks with mitigations)
 - Next steps (PRD → Roadmap → Backlog → Architecture → Design → Spec → Implementation)
 - Implementation notes (Quint integration, red-team requirement)

@@ -12,6 +12,11 @@ extends: [STD-001, STD-020, STD-032]
 tags: [prd, requirements, planning, 3ngram]
 ---
 
+> **Scope notice**: This PRD reflects the original M1 scope (4 memory
+> types, Postgres+Qdrant). For the current architecture, see System
+> Design v0.1.3 (8 memory types, Postgres+pgvector, ADRs 007-012
+> supersede 004-006).
+
 # 3ngram: Agentic RAG Memory System — Product Requirements Document
 
 ## Purpose

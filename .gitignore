@@ -6,7 +6,7 @@ Thumbs.db
 .vscode/
 
 # AI tools
-.aider*
+.quint/
 
 # Python
 __pycache__/
