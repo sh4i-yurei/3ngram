@@ -177,11 +177,11 @@ Per Tier 3 ceremony (STD-032):
 - [x] ADRs (001-006): [docs/architecture/adr/](../architecture/adr/)
 - [ ] System design: [system-design.md](../design/system-design.md)
 - [ ] Module designs: docs/design/module-*.md
-- [ ] Threat model: [threat-model.md](../operations/threat-model.md)
+- [ ] Threat model: `docs/operations/threat-model.md` (pending)
 - [ ] SLI/SLO targets: [sli-slo.md](../operations/sli-slo.md)
 - [ ] Risk register: [risk-register.md](../governance/risk-register.md)
 - [ ] Technical specification: [technical-specification.md](../specs/technical-specification.md)
-- [ ] Schema definitions: [docs/design/schemas/](../design/schemas/)
+- [ ] Schema definitions: `docs/design/schemas/` (pending)
 - [ ] Design review (red-team pass)
 
 ### Risks and dependencies

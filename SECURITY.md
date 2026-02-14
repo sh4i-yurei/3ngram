@@ -56,7 +56,7 @@ List supported releases or branches and how long they receive fixes.
 
 #### Safe behavior expectations
 
-- Follow [Security_and_Threat_Modeling_Standard](../../../03_Engineering_Standards/Security_and_Threat_Modeling_Standard.md).
+- Follow [Security_and_Threat_Modeling_Standard](https://github.com/sh4i-yurei/policies-and-standards/blob/main/03_Engineering_Standards/Security_and_Threat_Modeling_Standard.md).
 - Avoid new dependencies or services without approval.
 - Require code review and CI for all changes.
 
@@ -67,7 +67,7 @@ Security contact: <name/email/handle>.
 # Implementation Notes
 
 - Align vulnerability handling with
-  [vulnerability-management-workflow](../../../05_Dev_Workflows/vulnerability-management-workflow.md).
+  [vulnerability-management-workflow](https://github.com/sh4i-yurei/policies-and-standards/blob/main/05_Dev_Workflows/vulnerability-management-workflow.md).
 - Keep contact details current.
 
 # Continuous Improvement and Compliance Metrics

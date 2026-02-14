@@ -317,9 +317,9 @@ This is the foundation every agentic system needs but doesn't have.
 
 **Project Artifacts:**
 
-- Intake: [docs/planning/project-intake.md](/home/mark/3ngram/docs/planning/project-intake.md)
-- Proposal: [docs/planning/project-proposal.md](/home/mark/3ngram/docs/planning/project-proposal.md)
-- Charter: [docs/governance/project-charter.md](/home/mark/3ngram/docs/governance/project-charter.md) (this document)
+- Intake: [docs/planning/project-intake.md](../planning/project-intake.md)
+- Proposal: [docs/planning/project-proposal.md](../planning/project-proposal.md)
+- Charter: [docs/governance/project-charter.md](project-charter.md) (this document)
 - PRD: `docs/planning/prd.md` (next)
 - Roadmap: `docs/planning/roadmap.md` (next)
 
