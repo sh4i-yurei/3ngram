@@ -7,8 +7,8 @@ the [ai_context_pack_tpl](https://github.com/sh4i-yurei/policies-and-standards/b
 
 - **What**: Agentic RAG memory system — kernel-governed memory OS for AI agents.
 - **Package**: `engram` (Python 3.12)
-- **Current milestone**: M3 — System design, threat model, SLI/SLO, risk register.
-- **Phase**: Design (pre-implementation). No code until all design artifacts are approved (STD-020).
+- **Current milestone**: M3 complete. Entering Stage 3 (Specification).
+- **Phase**: Specification (pre-implementation). No code until specs approved (STD-020).
 
 ## Governing standards
 
@@ -29,30 +29,27 @@ gh api repos/sh4i-yurei/policies-and-standards/contents/<path> --jq '.content' |
 | STD-008 | Testing and Quality | `03_Engineering_Standards/Testing_and_Quality_Standard.md` |
 | STD-056 | KB Integration | `03_Engineering_Standards/KB_Integration_Standard.md` |
 
-### Current phase (design)
-
-| ID | Standard | Path |
-|----|----------|------|
-| STD-021 | System Design Standard | `04_Design_Framework/System_Design_Standard.md` |
-| STD-022 | Module Design Standard | `04_Design_Framework/Module_Design_Standard.md` |
-| STD-024 | Design Review Checklist | `04_Design_Framework/Design_Review_Checklist.md` |
-| STD-055 | Schema Definition Standard | `04_Design_Framework/schema-definition-standard.md` |
-| STD-007 | Security and Threat Modeling | `03_Engineering_Standards/Security_and_Threat_Modeling_Standard.md` |
-| STD-043 | SLI/SLO Standard | `03_Engineering_Standards/SLI_SLO_Standard.md` |
-| STD-044 | Data Management Standard | `03_Engineering_Standards/Data_Management_Standard.md` |
-| STD-047 | Architecture Decision Workflow | `05_Dev_Workflows/architecture-decision-workflow.md` |
-| STD-034 | Design Review Workflow | `05_Dev_Workflows/design_review_workflow.md` |
-
-### Next phase (specification)
+### Current phase (specification)
 
 | ID | Standard | Path |
 |----|----------|------|
 | STD-023 | Technical Specification Standard | `04_Design_Framework/Technical_Specification_Standard.md` |
 | STD-055 | Schema Definition Standard | `04_Design_Framework/schema-definition-standard.md` |
+| STD-024 | Design Review Checklist | `04_Design_Framework/Design_Review_Checklist.md` |
+| STD-033 | Documentation Change Workflow | `05_Dev_Workflows/documentation_change_workflow.md` |
+| STD-034 | Design Review Workflow | `05_Dev_Workflows/design_review_workflow.md` |
+
+### Next phase (implementation)
+
+| ID | Standard | Path |
+|----|----------|------|
+| STD-005 | Coding Standards and Conventions | `03_Engineering_Standards/Coding_Standards_and_Conventions.md` |
+| STD-008 | Testing and Quality | `03_Engineering_Standards/Testing_and_Quality_Standard.md` |
+| STD-030 | CI/CD Pipeline Model | `05_Dev_Workflows/cicd_pipeline.md` |
 
 ## Rule packs (STD-048)
 
-Load these when starting implementation work. During design phase,
+Load these when starting implementation work. During specification phase,
 reference them for interface and data model decisions.
 
 | ID | Pack | Path | Applies because |

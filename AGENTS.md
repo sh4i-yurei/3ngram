@@ -25,8 +25,9 @@ artifacts.
 
 ## Project-specific rules
 
-- This is a Tier 3 project in design phase. Do not write implementation
-  code until all design artifacts are approved.
+- This is a Tier 3 project in specification phase (Stage 3). Do not
+  write implementation code until technical specs and schema definitions
+  are approved.
 - Python package name is `engram` (not `3ngram`).
 - All design documents must follow KB templates from
   policies-and-standards.
