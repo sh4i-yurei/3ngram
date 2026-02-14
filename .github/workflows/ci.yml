@@ -13,12 +13,8 @@ on:
     branches: [main]
 
 jobs:
-  # gate-a-quint:
-  #   uses: sh4i-yurei/policies-and-standards/.github/workflows/gate-a-quint.yml@main
-  #
-  # SKIPPED: .quint/ is gitignored (local-only decision tracking).
-  # Gate A requires .quint/ in the checkout. Re-enable after resolving
-  # the .quint/ commit policy.
+  gate-a-quint:
+    uses: sh4i-yurei/policies-and-standards/.github/workflows/gate-a-quint.yml@main
 
   gate-b-docs:
     uses: sh4i-yurei/policies-and-standards/.github/workflows/gate-b-docs.yml@main
