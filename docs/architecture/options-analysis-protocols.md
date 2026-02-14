@@ -12,6 +12,10 @@ extends: [STD-001, STD-021]
 tags: [architecture, options-analysis, 3ngram, mcp, a2a, protocols]
 ---
 
+# Options Analysis: Protocol Strategy
+
+> **Scope notice**: This analysis predates ADR-003 (Postgres+pgvector). Storage references reflect the evaluation context, not the accepted architecture. See system design v0.1.3 for current state.
+
 # Purpose
 
 Evaluate protocol integration strategies for exposing 3ngram's memory
