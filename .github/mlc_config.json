@@ -1,0 +1,8 @@
+{
+  "ignorePatterns": [
+    {
+      "pattern": "^https://github.com/anthropics/a2a"
+    }
+  ],
+  "aliveStatusCodes": [200, 206, 301, 302, 307, 308]
+}
