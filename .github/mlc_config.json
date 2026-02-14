@@ -10,5 +10,7 @@
       "pattern": "^https://spec.modelcontextprotocol.io"
     }
   ],
+  "retryOn429": true,
+  "retryCount": 3,
   "aliveStatusCodes": [200, 206, 301, 302, 307, 308]
 }
