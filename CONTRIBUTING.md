@@ -46,8 +46,8 @@ assistance.
 
 #### Coding and testing expectations
 
-- Follow [Coding_Standards_and_Conventions](../../../03_Engineering_Standards/Coding_Standards_and_Conventions.md) and
-  [Testing_and_Quality_Standard](../../../03_Engineering_Standards/Testing_and_Quality_Standard.md).
+- Follow [Coding_Standards_and_Conventions](https://github.com/sh4i-yurei/policies-and-standards/blob/main/03_Engineering_Standards/Coding_Standards_and_Conventions.md) and
+  [Testing_and_Quality_Standard](https://github.com/sh4i-yurei/policies-and-standards/blob/main/03_Engineering_Standards/Testing_and_Quality_Standard.md).
 - Write or update tests with each change; no failing tests on merge.
 
 #### Documentation expectations
@@ -59,7 +59,7 @@ assistance.
 #### AI-assisted work
 
 - Provide the approved spec and standards in the prompt context.
-- Follow [KB_Integration_Standard](../../../03_Engineering_Standards/KB_Integration_Standard.md) and `AGENTS.md` for KB retrieval and
+- Follow [KB_Integration_Standard](https://github.com/sh4i-yurei/policies-and-standards/blob/main/03_Engineering_Standards/KB_Integration_Standard.md) and `AGENTS.md` for KB retrieval and
   pointer artifact requirements.
 - Summarize AI-generated changes in the PR description.
 - Do not bypass reviews or required gates.

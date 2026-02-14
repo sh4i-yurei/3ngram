@@ -19,13 +19,13 @@ Document how this project validates behavior.
 # Scope
 
 Use for project-specific testing expectations aligned to
-[Testing_and_Quality_Standard](../../../03_Engineering_Standards/Testing_and_Quality_Standard.md).
+[Testing_and_Quality_Standard](https://github.com/sh4i-yurei/policies-and-standards/blob/main/03_Engineering_Standards/Testing_and_Quality_Standard.md).
 
 # Standard
 
 ## Testing strategy template
 
-Align with [Testing_and_Quality_Standard](../../../03_Engineering_Standards/Testing_and_Quality_Standard.md) and project requirements.
+Align with [Testing_and_Quality_Standard](https://github.com/sh4i-yurei/policies-and-standards/blob/main/03_Engineering_Standards/Testing_and_Quality_Standard.md) and project requirements.
 
 ## Test strategy
 
