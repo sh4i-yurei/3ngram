@@ -1,12 +1,10 @@
-# CI Caller Template
+# CI pipeline — 3ngram
 #
-# Copy this file to .github/workflows/ci.yml in your project repo.
-# Adjust the `language` input to match your project's primary language.
-# For multi-language projects, duplicate gate-c and gate-d jobs with
-# different language inputs.
+# Calls reusable gate workflows from policies-and-standards (STD-030).
+# Gates run in parallel on pull requests targeting main.
 #
-# This calls the reusable workflows defined in policies-and-standards.
-# See: CI_CD_Pipeline_Model (STD-030) for gate definitions.
+# Workflow refs use @main because reusable gate workflows were added
+# after the v2.0.0 tag and do not exist at that ref.
 
 name: CI
 
@@ -24,15 +22,24 @@ jobs:
   gate-c-code:
     uses: sh4i-yurei/policies-and-standards/.github/workflows/gate-c-code.yml@main
     with:
-      language: python  # change to: python | node | rust | java
+      language: python
 
   gate-d-tests:
     uses: sh4i-yurei/policies-and-standards/.github/workflows/gate-d-tests.yml@main
     with:
-      language: python  # change to: python | node | rust | java
+      language: python
 
   gate-e-config:
     uses: sh4i-yurei/policies-and-standards/.github/workflows/gate-e-config.yml@main
 
   gate-f-security:
     uses: sh4i-yurei/policies-and-standards/.github/workflows/gate-f-security.yml@main
+    # blocking: false (default) — security findings are advisory per STD-030
+
+  cspell:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: streetsidesoftware/cspell-action@v8
+        with:
+          files: "**/*.md"
