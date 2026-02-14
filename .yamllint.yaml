@@ -1,0 +1,11 @@
+# yamllint configuration for 3ngram
+# Relaxes line-length to accommodate long YAML values (e.g., pre-commit
+# hook entries with inline bash commands).
+
+extends: default
+
+rules:
+  line-length:
+    max: 120
+  truthy:
+    check-keys: false

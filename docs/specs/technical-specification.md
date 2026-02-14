@@ -15,7 +15,7 @@ tags: [template, specification, implementation]
 # Purpose
 
 Provide a structured Technical Specification template aligned to
-[Technical_Specification_Standard](../../../04_Design_Framework/Technical_Specification_Standard.md). Use this to authorize and
+[Technical_Specification_Standard](https://github.com/sh4i-yurei/policies-and-standards/blob/main/04_Design_Framework/Technical_Specification_Standard.md). Use this to authorize and
 constrain implementation work.
 
 # Scope
@@ -27,7 +27,7 @@ Use for any change that modifies code or system behavior.
 ## Technical specification template
 
 Translate an approved Module Design into explicit implementation
-instructions. Follow [Technical_Specification_Standard](../../../04_Design_Framework/Technical_Specification_Standard.md).
+instructions. Follow [Technical_Specification_Standard](https://github.com/sh4i-yurei/policies-and-standards/blob/main/04_Design_Framework/Technical_Specification_Standard.md).
 
 ## Scope and intent
 
@@ -51,7 +51,7 @@ Describe data models, schemas, migrations, and ownership changes.
 ## Schema definitions
 
 Link schema definition artifacts and canonical schema files (API
-schemas, data models, event formats) per [schema-definition-standard](../../../04_Design_Framework/schema-definition-standard.md).
+schemas, data models, event formats) per [schema-definition-standard](https://github.com/sh4i-yurei/policies-and-standards/blob/main/04_Design_Framework/schema-definition-standard.md).
 
 ## Algorithms and control flow
 
