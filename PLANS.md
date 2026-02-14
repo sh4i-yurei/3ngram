@@ -23,10 +23,10 @@ Store ExecPlans under `plans/exec_plans/<YYYY-MM-DD>_<short_slug>.md`.
 
 ## Current status
 
-**Phase**: Design (pre-implementation)
-**Current milestone**: M3 (System Design) — complete
-**Last session**: Session 6 — Critical review, cross-artifact fixes, charter v0.2.1, design review PASS
-**Next**: Session 7 — PR to main, specification phase prep
+**Phase**: Specification (pre-implementation)
+**Current milestone**: M4 (Specification) — in progress
+**Last session**: Session 7 — Phase transition, governance updates, open issue triage
+**Next**: Session 8 — Technical specifications and schema definitions (Stage 3)
 
 ### Completed artifacts
 
@@ -63,6 +63,16 @@ Store ExecPlans under `plans/exec_plans/<YYYY-MM-DD>_<short_slug>.md`.
 
 - Technical Specification (docs/specs/technical-specification.md) — Stage 3
 - Schema Definitions (docs/design/schemas/) — Stage 3
+
+### Key decisions (Session 7)
+
+- **PR #3 merged**: M2 architecture decisions + M3 design artifacts merged to main (squash, commit 7b9854c). Design phase complete.
+- **Phase transition**: Design (Stage 2) complete, entering Specification (Stage 3). Governance files updated (PLANS.md, AI_CONTEXT.md, AGENTS.md).
+- **Spec phase scope**: Stage 3 requires ~4 technical specifications (one per module: Memory, Retrieval, Autonomy, Infrastructure) per STD-023, and ~7 schema definitions (memory_records, memory_versions, memory_edges, librarian_audit, librarian_queue, agent_registry, outbox) per STD-055.
+- **Authoring order**: Schema definitions first (tech specs reference them), then tech specs per module.
+- **ExecPlan required**: Stage 3 work is Tier 3 and needs an ExecPlan in `plans/exec_plans/` before starting.
+- **Open issues addressed**: #5 (CI gates), #7 (scope disclaimers) worked in parallel by separate instances.
+- **Parallel execution**: 3 Claude instances — Instance 1 (governance + orchestration), Instance 2 (docs issues #4/#7), Instance 3 (CI gates #5).
 
 ### Key decisions (Session 6)
 
