@@ -14,6 +14,8 @@ tags: [architecture, options-analysis, 3ngram, monolith]
 
 # Options Analysis: Architecture Style
 
+> **Scope notice**: This analysis predates ADR-003 (Postgres+pgvector). Storage references reflect the evaluation context, not the accepted architecture. See system design v0.1.3 for current state.
+
 ## Purpose
 
 This document evaluates architecture style options for the 3ngram agentic
