@@ -188,6 +188,8 @@
     "virtualenv",
     "vitest",
     "WLNK",
+    "worktree",
+    "worktrees",
     "writability",
     "yamllint",
     "yurei"
