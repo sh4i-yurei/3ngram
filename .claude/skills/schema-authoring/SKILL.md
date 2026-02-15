@@ -53,33 +53,41 @@ gh api repos/sh4i-yurei/policies-and-standards/contents/06_Projects/Templates/de
 
 ## 3ngram-specific: memory record base fields
 
-All memory records share these base fields (from system design v0.1.3):
+The MemoryRecord envelope is defined in `docs/design/system-design.md`.
+When defining a concrete schema, align with the current version:
 
 | Field | Type | Description |
 |-------|------|-------------|
 | id | UUID | Primary key |
-| memory_type | ENUM | belief, decision, episode, skill, entity, preference, reflection, resource |
-| content | JSONB | Type-specific payload |
-| embedding | vector(384) | pgvector embedding (dimension per ADR-007) |
-| model_version | TEXT | Embedding model that produced the vector |
-| created_at | TIMESTAMPTZ | Record creation (system time) |
-| valid_from | TIMESTAMPTZ | Business validity start (valid time) |
-| valid_to | TIMESTAMPTZ | Business validity end (NULL = current) |
-| version | INT | Optimistic concurrency version |
-| status | ENUM | active, consolidated, archived |
-| confidence | FLOAT | 0.0-1.0 confidence score |
-| source_agent | TEXT | Agent that created the record |
-| access_level | ENUM | public, agent_scoped, user_only, system, sensitive |
-| metadata | JSONB | Extensible metadata |
+| type | MemoryType | One of 8 types (belief, decision, episode, skill, entity, preference, reflection, resource) |
+| content | str | Primary text content |
+| metadata | dict (JSONB) | Arbitrary extensible metadata |
+| version | int | Starts at 1, optimistic concurrency |
+| superseded_by | UUID or None | Points to newer version |
+| source_agent | str | Agent that created the record |
+| source_confidence | float | Observed / told / inferred |
+| evidence_links | list[UUID] | Supporting records |
+| event_time | datetime | When true in real world (valid time) |
+| ingestion_time | datetime | When kernel learned it (system time) |
+| access_level | AccessLevel | public / agent / user / system / sensitive |
+| classification | str or None | Security label |
+| gate_decision_id | UUID | Librarian audit reference |
+| gate_decision_type | GateDecisionType | external, consolidation, or self_healing |
+| expected_version | int or None | Optimistic lock (required on UPDATE) |
+| created_at | datetime | Record creation timestamp |
+| updated_at | datetime | Last modification timestamp |
+| decay_score | float | Relevance decay (0.0-1.0) |
+| consolidation_path | str | "fast" or "slow" |
 
 ## 3ngram-specific: bi-temporal versioning
 
 Schemas MUST support bi-temporal queries (ADR-003, system design):
 
-- **System time** (`created_at`): when the record was stored
-- **Valid time** (`valid_from`, `valid_to`): when the fact was true
-- UPDATE creates a new version; old version gets `valid_to` set
+- **System time** (`ingestion_time`): when the kernel learned it
+- **Valid time** (`event_time`): when the fact was true in the real world
+- UPDATE creates a new version; old version gets `superseded_by` set
 - Version chain integrity enforced by `expected_version` optimistic lock
+- `created_at`/`updated_at` track record lifecycle separately from temporal semantics
 
 ## Format progression by phase
 
@@ -102,7 +110,7 @@ as implementation approaches.
 | memory_edges | Knowledge graph relationships | ADR-009 |
 | librarian_audit | Gate decision logging | ADR-012 |
 | agent_registry | Agent identity and trust levels | ADR-002 |
-| embeddings_metadata | Model version tracking | ADR-007 |
+| librarian_queue | Pending approvals and processing state | ADR-012 |
 
 # Safety / Limits
 

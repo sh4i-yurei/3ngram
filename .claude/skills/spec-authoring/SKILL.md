@@ -60,10 +60,13 @@ Every spec MUST include all 10 sections. Empty sections must state
 
 ## Template reference (TPL-PRJ-TECH-SPEC)
 
-The canonical template lives in the KB at:
+This repo has a local copy of the template at:
+`docs/specs/technical-specification.md`
+
+The upstream KB version lives at:
 `06_Projects/Templates/design/technical_specification_tpl.md`
 
-Fetch it with:
+To refresh from the upstream KB (e.g., to sync with central standards):
 
 ```bash
 gh api repos/sh4i-yurei/policies-and-standards/contents/06_Projects/Templates/design/technical_specification_tpl.md --jq '.content' | base64 -d
@@ -82,7 +85,7 @@ Before requesting review, verify:
 - [ ] Non-functional constraints have measurable targets
 - [ ] Exclusions section prevents scope creep
 - [ ] No implementation code in the spec (pseudocode is acceptable)
-- [ ] Frontmatter includes: title, version, status, owner, last_updated
+- [ ] Frontmatter includes: id, title, category, version, status, owner, reviewer, approver, extends, tags, last_updated
 
 ## 3ngram-specific guidance
 

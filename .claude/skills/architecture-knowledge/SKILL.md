@@ -13,8 +13,8 @@ Consult this before proposing any architectural change.
 
 ## ADR Index
 
-All ADRs live in `docs/architecture/adr/`. Every ADR status is
-**Accepted**.
+All ADRs live in `docs/architecture/adr/`. Every numbered ADR listed
+below (ADR-001 through ADR-012) currently has status **Accepted**.
 
 | ADR | Title | Supersedes | Phase |
 |-----|-------|------------|-------|
@@ -46,6 +46,19 @@ domain layer.
 **ADR-003 Storage backend**: Postgres+pgvector replaces Postgres+Qdrant.
 Unified storage eliminates cross-database consistency bugs. HNSW
 indexing, hybrid search via RRF in SQL. Scaling ceiling ~1M vectors.
+
+**ADR-004 Embedding model** (superseded by ADR-007): Selected fastembed
+with BAAI/bge-small-en-v1.5 (384 dims). CPU-first, GPU optional via
+RTX 3070. ONNX Runtime avoids PyTorch dependency.
+
+**ADR-005 Agent roles** (superseded by ADR-008): Agent roles as Python
+Protocol classes (Researcher for MVP). No framework dependency
+(LangGraph, CrewAI avoided). AgentRole Protocol with `execute()`,
+`cancel()`, `health_check()`.
+
+**ADR-006 Knowledge graph** (superseded by ADR-009): Lightweight
+`memory_edges` table designed but implementation deferred to post-MVP.
+Edge types: supersedes, supports, contradicts, relates_to, derived_from.
 
 **ADR-007 Embedding adapter**: EmbeddingAdapter Protocol
 (`embed_one`, `embed_batch`, `dimension`, `model_name`). fastembed
@@ -154,7 +167,7 @@ classification, confidence calibration) -- heuristic Phase 1, RL Phase
 | Module: Memory | `docs/design/module-memory.md` |
 | Module: Retrieval | `docs/design/module-retrieval.md` |
 | Module: Autonomy | `docs/design/module-autonomy.md` |
-| Module: Infrastructure | `docs/design/module-infrastructure.md` (pending) |
+| Module: Infrastructure | `docs/design/module-infrastructure.md` |
 | ADRs (12) | `docs/architecture/adr/ADR-{001..012}-*.md` |
 | Options Analyses | `docs/architecture/options-analysis-*.md` |
 | PRD | `docs/planning/requirements-prd.md` |
@@ -163,7 +176,7 @@ classification, confidence calibration) -- heuristic Phase 1, RL Phase
 | SLI/SLO | `docs/operations/sli-slo.md` |
 | Risk Register | `docs/governance/risk-register.md` |
 | Schemas | `docs/design/schemas/` (pending) |
-| Specs | `docs/specs/` (pending) |
+| Specs | `docs/specs/` (template exists; project specs pending) |
 
 ## Key interfaces
 
