@@ -91,7 +91,7 @@ Worktrees under `/tmp/` do not contain `.beads/`. Worker instances
 must use the `--db` flag to access the main clone's beads database:
 
 ```bash
-bd --db /home/mark/3ngram/.beads/beads.db list --assignee=i2
+bd --db <project-root>/.beads/beads.db list --assignee=i2
 ```
 
 Alternatively, the orchestrator (I1) can handle all beads writes on
