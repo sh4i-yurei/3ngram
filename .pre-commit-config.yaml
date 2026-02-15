@@ -31,3 +31,15 @@ repos:
       - id: ruff
         args: [--fix]
       - id: ruff-format
+
+  # --- Dead code detection ---
+  - repo: local
+    hooks:
+      - id: vulture
+        name: vulture
+        entry: vulture
+        args: [src/engram, scripts/vulture_whitelist.py, --min-confidence, "80"]
+        language: python
+        additional_dependencies: ["vulture>=2.14"]
+        types: [python]
+        pass_filenames: false

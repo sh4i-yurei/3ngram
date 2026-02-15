@@ -181,6 +181,23 @@ cspell "**/*.md"                       # spell check (config: .cspell.json)
 pre-commit run --all-files
 ```
 
+## Agent commands and scripts
+
+Session lifecycle commands are available globally (see `~/CLAUDE.md`):
+`/session-start`, `/session-close`, `/daily-report`, `/pr-ready`.
+
+Cross-project scripts in `~/scripts/` include `ci-status.sh`,
+`ci-logs.sh`, `branch-cleanup.sh`, `branch-status.sh`,
+`session-verify.sh`, `review_parser.py`, and `kb_sync.sh`. See
+`~/CLAUDE.md` for when-to-use guidance.
+
+Project-level scripts (issue #21):
+
+- `scripts/validate-version-refs.sh` — version consistency across docs
+  (Gate B calls this if it exists)
+- `scripts/check-frontmatter.py` — governed doc frontmatter validation
+- `scripts/vulture_whitelist.py` — vulture false positive suppression
+
 ## CI gates (STD-030)
 
 CI runs on PRs to `main` via reusable workflows from policies-and-standards:
