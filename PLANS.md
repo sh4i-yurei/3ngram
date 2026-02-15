@@ -25,8 +25,8 @@ Store ExecPlans under `plans/exec_plans/<YYYY-MM-DD>_<short_slug>.md`.
 
 **Phase**: Specification (pre-implementation)
 **Current milestone**: M4 (Specification) — in progress
-**Last session**: Session 7 — Phase transition, governance updates, open issue triage
-**Next**: Session 8 — Technical specifications and schema definitions (Stage 3)
+**Last session**: Session 9 — 10-issue sprint across 5 instances, code quality tooling, agent skills, CI improvements
+**Next**: Session 10 — Stage 3 specification work (ExecPlan required first)
 
 ### Completed artifacts
 
@@ -63,6 +63,22 @@ Store ExecPlans under `plans/exec_plans/<YYYY-MM-DD>_<short_slug>.md`.
 
 - Technical Specification (docs/specs/technical-specification.md) — Stage 3
 - Schema Definitions (docs/design/schemas/) — Stage 3
+
+### Key decisions (Session 9)
+
+- **10-issue sprint**: First 5-instance concurrent sprint. Closed 3ngram #20, #21, #22 and p&s #24, #28, #29, #38, #47, #48, #49.
+- **Code quality tooling** (PR #26): Expanded ruff rules (C90, C4, RET, S, ARG, PLR, PLW), added vulture + pip-audit, created validate-version-refs.sh, check-frontmatter.py, vulture_whitelist.py.
+- **M4 agent skills** (PR #25): Created spec-authoring, schema-authoring, and architecture-knowledge skills for Stage 3 work.
+- **AGENTS.md updated** (PR #19): Git safety rules, artifact creation rules, problem solving rules added.
+- **p&s CI improvements**: Post-merge health check (#50), failure notifications (#53), gate caching (#54), STD-030 optimization section (#52), KB templates and amendments (#51).
+- **Merge management lesson**: Multi-agent PRs cause cascading behind-main states. Need dedicated merge manager phase for future sprints. Pattern recorded in MEMORY.md.
+- **Branch discipline issues**: Shared local clone across 5 instances caused branch collisions. Per-instance worktrees recommended for future multi-agent sessions.
+
+### Key decisions (Session 8)
+
+- **Cross-project tooling**: Built scripts (branch-status.sh, ci-status.sh, ci-logs.sh, branch-cleanup.sh, session-verify.sh), commands (daily-report, session-start, session-close), and skills in home directory.
+- **KB gap analysis**: Identified 5 new p&s issues (#42-#46) from systematic KB audit.
+- **Sprint planning**: Created 10-issue sprint plan distributed across 5 instances.
 
 ### Key decisions (Session 7)
 
