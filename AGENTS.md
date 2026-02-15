@@ -32,6 +32,45 @@ artifacts.
 - In multi-instance sessions, only touch branches you own. If the
   session handoff lists branch ownership, respect it.
 
+## Multi-instance sprint protocol
+
+When multiple Claude Code instances run in parallel:
+
+### Worktree isolation (mandatory)
+
+Each instance MUST work in its own git worktree. Before starting work:
+
+```bash
+git worktree add /tmp/i<N>-<branch> <branch>
+```
+
+No shared working directory. This prevents branch collisions, dirty
+index conflicts, and accidental cross-instance staging.
+
+### Merge manager phase
+
+After all instance PRs are Copilot-reviewed, one instance handles
+merges sequentially:
+
+1. Map file overlap across all open PRs (`git diff --stat` each)
+2. Batch merge no-overlap PRs first (parallel-safe)
+3. Merge highest-overlap PRs last (most likely to conflict)
+4. Rebase remaining PRs against updated main between merges
+
+This is a planned phase, not reactive. Budget time for it in the sprint
+plan.
+
+### Workload balancing
+
+Distribute work by estimated complexity, not issue count. Cap at 2
+complex deliverables per instance. A single schema definition is heavier
+than three config fixes.
+
+### Sprint plan header
+
+Every multi-instance sprint plan MUST include the session number
+explicitly (e.g., "Session 10 — Sprint Plan").
+
 ## Artifact creation
 
 - Before creating any governed artifact (session review, ExecPlan,
@@ -39,6 +78,13 @@ artifacts.
   in the KB. Do not improvise the format.
 - Before writing any CI or config fix, read the actual error output
   first. Do not guess.
+
+## Subagent verification
+
+Subagent-generated content that references data models, field names,
+API contracts, or schema definitions MUST be verified against source
+design documents before committing. Do not trust subagent output that
+invents names not present in the design artifacts.
 
 ## Problem solving
 
