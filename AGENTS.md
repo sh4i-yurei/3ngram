@@ -34,7 +34,7 @@ artifacts.
 
 ## Artifact creation
 
-- Before creating any governed artifact (session review, exec plan,
+- Before creating any governed artifact (session review, ExecPlan,
   ADR, design doc), fetch its template from `06_Projects/Templates/`
   in the KB. Do not improvise the format.
 - Before writing any CI or config fix, read the actual error output
