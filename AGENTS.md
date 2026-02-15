@@ -66,10 +66,36 @@ Distribute work by estimated complexity, not issue count. Cap at 2
 complex deliverables per instance. A single schema definition is heavier
 than three config fixes.
 
-### Sprint plan header
+### Sprint planning and tracking (beads)
 
-Every multi-instance sprint plan MUST include the session number
-explicitly (e.g., "Session 10 — Sprint Plan").
+Sprint work is tracked as a beads epic with child tasks. The
+orchestrator (I1) runs `/sprint-plan` to create the structure:
+
+- **Sprint epic**: `bd create --type=epic --labels="sprint:s<N>"`
+- **Work items**: `bd create --parent=<epic> --assignee=i<M>
+  --labels="sprint:s<N>,instance:i<M>"`
+- **Dependencies**: `bd dep add <child> <depends-on>`
+- **Status updates**: `bd update <id> --status=in_progress` when
+  starting, `bd close <id>` when done
+- **Sprint monitoring**: `bd children <epic-id>` shows all tasks
+
+The orchestrator runs `/sprint-merge` for the merge phase and uses
+`~/scripts/sprint-overlap.sh` to compute file-overlap and merge order.
+
+Every sprint plan MUST include the session number explicitly
+(e.g., "Session 12 — Sprint Plan").
+
+### Beads DB access from worktrees
+
+Worktrees under `/tmp/` do not contain `.beads/`. Worker instances
+must use the `--db` flag to access the main clone's beads database:
+
+```bash
+bd --db /home/mark/3ngram/.beads/beads.db list --assignee=i2
+```
+
+Alternatively, the orchestrator (I1) can handle all beads writes on
+behalf of worker instances.
 
 ## Artifact creation
 
