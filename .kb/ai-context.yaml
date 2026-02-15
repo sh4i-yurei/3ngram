@@ -3,3 +3,5 @@ kb_repo: sh4i-yurei/policies-and-standards
 kb_tag: v2.0.0
 index: INDEX.md
 entry_point: 00_Orientation/Onboarding.md
+# When bumping kb_tag, also review .github/copilot-instructions.md
+# for staleness against the new KB version (STD-030 Gate G).
