@@ -46,7 +46,7 @@ errors=0
 
 INIT_FILE="${REPO_ROOT}/src/engram/__init__.py"
 if [[ -f "$INIT_FILE" ]]; then
-    INIT_VERSION=$(grep -oP '__version__\s*=\s*"\K[^"]+' "$INIT_FILE" || echo "")
+    INIT_VERSION=$(grep -E '__version__[[:space:]]*=' "$INIT_FILE" | head -1 | sed 's/.*__version__[[:space:]]*=[[:space:]]*"\([^"]*\)".*/\1/' || echo "")
     if [[ -z "$INIT_VERSION" ]]; then
         echo "WARN: no __version__ found in ${INIT_FILE}"
     elif [[ "$INIT_VERSION" != "$CANONICAL" ]]; then
@@ -65,27 +65,32 @@ fi
 doc_count=0
 doc_errors=0
 
-while IFS= read -r -d '' mdfile; do
-    # Extract frontmatter (between first two --- lines)
-    frontmatter=$(sed -n '/^---$/,/^---$/p' "$mdfile" | sed '1d;$d')
-    if [[ -z "$frontmatter" ]]; then
-        continue
-    fi
+if [[ ! -d "${REPO_ROOT}/docs" ]]; then
+    echo "SKIP: docs/ directory not found"
+else
+    while IFS= read -r -d '' mdfile; do
+        # Extract frontmatter (between first two --- lines)
+        frontmatter=$(sed -n '/^---$/,/^---$/p' "$mdfile" | sed '1d;$d')
+        if [[ -z "$frontmatter" ]]; then
+            continue
+        fi
 
-    # Check for version field
-    doc_version=$(echo "$frontmatter" | grep -E '^version:' | head -1 | sed 's/version:\s*//' | tr -d ' "'\''')
-    if [[ -z "$doc_version" ]]; then
-        continue
-    fi
+        # Check for version field
+        doc_version=$(echo "$frontmatter" | grep -E '^version:' | head -1 \
+            | sed -E "s/^version:[[:space:]]*['\"]?([^'\"]*)['\"]?[[:space:]]*$/\1/")
+        if [[ -z "$doc_version" ]]; then
+            continue
+        fi
 
-    doc_count=$((doc_count + 1))
+        doc_count=$((doc_count + 1))
 
-    # Validate it looks like a version (N.N.N or N.N)
-    if ! echo "$doc_version" | grep -qE '^[0-9]+\.[0-9]+(\.[0-9]+)?$'; then
-        echo "FAIL: ${mdfile#${REPO_ROOT}/} has invalid version format: ${doc_version}"
-        doc_errors=$((doc_errors + 1))
-    fi
-done < <(find "${REPO_ROOT}/docs" -name '*.md' -print0 2>/dev/null)
+        # Validate it looks like a version (N.N.N or N.N)
+        if ! echo "$doc_version" | grep -qE '^[0-9]+\.[0-9]+(\.[0-9]+)?$'; then
+            echo "FAIL: ${mdfile#${REPO_ROOT}/} has invalid version format: ${doc_version}"
+            doc_errors=$((doc_errors + 1))
+        fi
+    done < <(find "${REPO_ROOT}/docs" -name '*.md' -print0)
+fi
 
 if [[ $doc_count -gt 0 ]]; then
     echo "PASS: ${doc_count} docs have valid version format (${doc_errors} errors)"

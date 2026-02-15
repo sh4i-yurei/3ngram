@@ -45,13 +45,13 @@ def extract_frontmatter(text: str) -> dict[str, str] | None:
     Returns a dict of key-value pairs, or None if no frontmatter found.
     Only handles simple key: value pairs (not nested YAML).
     """
-    match = re.match(r"^---\s*\n(.*?)\n---\s*\n", text, re.DOTALL)
+    match = re.match(r"^---\s*\n(.*?)\n---\s*(?:\n|$)", text, re.DOTALL)
     if not match:
         return None
 
     fields: dict[str, str] = {}
     for line in match.group(1).splitlines():
-        m = re.match(r"^(\w[\w_]*)\s*:\s*(.+)$", line)
+        m = re.match(r"^(\w+)\s*:\s*(.*)$", line)
         if m:
             fields[m.group(1)] = m.group(2).strip()
     return fields
@@ -88,20 +88,24 @@ def _check_field_formats(
     return errors
 
 
-def validate_file(filepath: Path) -> list[str]:
-    """Validate a single markdown file. Returns list of error messages."""
+def validate_file(filepath: Path) -> tuple[list[str], bool]:
+    """Validate a single markdown file.
+
+    Returns (errors, has_frontmatter) to avoid re-reading the file.
+    """
     rel = filepath.as_posix()
 
     try:
         text = filepath.read_text(encoding="utf-8")
     except OSError as e:
-        return [f"{rel}: cannot read file: {e}"]
+        return [f"{rel}: cannot read file: {e}"], False
 
     fm = extract_frontmatter(text)
     if fm is None:
-        return [f"{rel}: missing YAML frontmatter"]
+        return [f"{rel}: missing YAML frontmatter"], False
 
-    return _check_required_fields(fm, rel) + _check_field_formats(fm, rel)
+    errors = _check_required_fields(fm, rel) + _check_field_formats(fm, rel)
+    return errors, True
 
 
 def _collect_files(target: Path) -> list[Path]:
@@ -138,9 +142,8 @@ def main() -> None:
     all_errors: list[str] = []
     checked = 0
     for f in files:
-        errors = validate_file(f)
-        text = f.read_text(encoding="utf-8")
-        if errors or extract_frontmatter(text) is not None:
+        errors, has_fm = validate_file(f)
+        if errors or has_fm:
             checked += 1
         all_errors.extend(errors)
 
