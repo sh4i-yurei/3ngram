@@ -145,6 +145,13 @@ until deployment planning.
 - **Self-healing**: aiobreaker circuit breakers + tenacity retries
 - **Agent learning**: data collection from day one, algorithms post-MVP
 
+## Maintenance
+
+- When the KB pin version is bumped (via `kb_sync.sh --update`),
+  `.github/copilot-instructions.md` SHOULD also be reviewed for
+  staleness against the new KB version. The copilot instructions
+  distill KB rules for Copilot code review and must stay in sync.
+
 ## Prompt hygiene
 
 - State goal, constraints, and acceptance criteria.
