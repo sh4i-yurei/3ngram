@@ -39,6 +39,8 @@
     "Codex",
     "CodeQL",
     "CODEOWNERS",
+    "coderabbit",
+    "CodeRabbit",
     "commitlint",
     "cooldown",
     "conventionalcommits",

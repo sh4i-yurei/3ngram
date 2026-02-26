@@ -1,0 +1,97 @@
+# yamllint disable-line rule:line-length
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+---
+#
+# CodeRabbit configuration for 3ngram (Python agentic RAG memory OS).
+# Gate G — AI review as validator (STD-030).
+
+language: en-US
+
+reviews:
+  profile: assertive
+  request_changes_workflow: true
+  high_level_summary: true
+  high_level_summary_in_walkthrough: true
+  poem: false
+  review_status: true
+  commit_status: true
+  fail_commit_status: true
+  sequence_diagrams: true
+  assess_linked_issues: true
+  enable_prompt_for_ai_agents: true
+
+  auto_review:
+    enabled: true
+    drafts: true
+    ignore_title_keywords:
+      - WIP
+      - DO NOT MERGE
+
+  path_filters:
+    - "!.quint/**"
+    - "!**/*.lock"
+    - "!**/fixtures/**"
+    - "!**/migrations/**"
+
+  path_instructions:
+    - path: "src/engram/**/*.py"
+      instructions: |
+        Python code review for an agentic RAG memory system. Type hints
+        REQUIRED on all public functions (mypy strict). No bare except:
+        or except Exception: pass. No import *. No cross-module imports
+        of private _symbols. Flag time.sleep() in async code — use
+        asyncio.sleep(). Flag synchronous requests.get or blocking I/O
+        in async contexts.
+    - path: "src/engram/**/[!_]*.py"
+      instructions: |
+        Design-first enforcement: implementation code MUST cite an
+        approved technical spec ID in the PR description. Files named
+        protocol.py, __init__.py, or containing only type stubs are
+        exempt from this requirement.
+
+        Architecture decision gates:
+        - ADR-003: Flag imports of Qdrant, Pinecone, ChromaDB, Milvus,
+          Weaviate, or FAISS as primary store.
+        - ADR-007: Flag hardcoded embedding model names or dimensions
+          outside src/engram/embedding/.
+        - ADR-008: Agent roles MUST implement the AgentRole Protocol
+          (or a subprotocol). BaseAgent is a permitted helper class.
+        - ADR-009: Flag imports of Neo4j, py2neo, neomodel, or
+          neo4j-driver (NetworkX is current).
+        - ADR-012: Memory writes must pass through the Librarian Gate.
+          Flag direct storage writes bypassing the gate.
+    - path: "docs/**"
+      instructions: |
+        Governed documentation. YAML frontmatter with id, version,
+        last_updated is required. Flag version decrements. Flag broken
+        relative links.
+    - path: ".github/workflows/**"
+      instructions: |
+        GitHub Actions workflows. Python version must be 3.12+. Actions
+        MUST be pinned to SHA or major version tag. No hardcoded secrets.
+        Shell scripts MUST use set -euo pipefail.
+
+  tools:
+    semgrep:
+      enabled: true
+    shellcheck:
+      enabled: true
+    gitleaks:
+      enabled: true
+    ruff:
+      enabled: false
+    eslint:
+      enabled: false
+    biome:
+      enabled: false
+
+knowledge_base:
+  code_guidelines:
+    enabled: true
+  learnings:
+    scope: local
+  web_search:
+    enabled: true
+
+chat:
+  auto_reply: true
