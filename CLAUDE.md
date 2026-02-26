@@ -47,7 +47,7 @@ Self-healing pattern: aiobreaker circuit breakers + tenacity retries at module b
 
 ## Knowledge base
 
-KB pinned to `v2.1.0` via `.kb/ai-context.yaml`. See `kb-navigation`
+KB pinned to `v2.0.0` via `.kb/ai-context.yaml`. See `kb-navigation`
 rule for retrieval commands and standards lookup. See `AI_CONTEXT.md`
 for applicable standards and current phase context.
 

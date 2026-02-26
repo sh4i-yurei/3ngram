@@ -1,7 +1,7 @@
 ---
 name: security-reviewer
 description: Security vulnerability detection and remediation specialist. Follow STD-007 (Security) and STD-053 (Threat Modeling). Use PROACTIVELY after writing code that handles user input, authentication, API endpoints, or sensitive data.
-tools: ["Read", "Write", "Edit", "Bash", "Grep", "Glob"]
+tools: ["Read", "Bash", "Grep", "Glob"]
 model: sonnet
 ---
 
