@@ -1,0 +1,41 @@
+name: Epic
+description: Large task that needs decomposition into sub-issues
+labels: ["needs-decomposition"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Important**: Maximum 3 sub-issues per orchestrator agent.
+        Platform hard limit confirmed (Anthropic #5528). For >3 sub-tasks,
+        create sub-orchestrator issues with their own sub-issues.
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Overall goal and context
+    validations:
+      required: true
+  - type: textarea
+    id: sub-issues
+    attributes:
+      label: Sub-Issue Checklist
+      description: "Each sub-issue should be <500 LOC, 1-3 files, single responsibility"
+      value: |
+        - [ ] Sub-issue 1: <title> — Files: `<glob>` — AC: WHEN/THEN
+        - [ ] Sub-issue 2: <title> — Files: `<glob>` — AC: WHEN/THEN
+        - [ ] Sub-issue 3: <title> — Files: `<glob>` — AC: WHEN/THEN
+    validations:
+      required: true
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependency Order
+      description: Which sub-issues depend on others
+      placeholder: |
+        Sub-issue 2 depends on sub-issue 1
+        Sub-issue 3 is independent
+  - type: textarea
+    id: notes
+    attributes:
+      label: Decomposition Notes
+      description: Architecture decisions, shared context, risk factors
