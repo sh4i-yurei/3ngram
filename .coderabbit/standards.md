@@ -15,8 +15,9 @@ Mechanically-checkable rules for AI code review. These supplement
    Weaviate, or FAISS as primary store.
 2. ADR-007: Embedding model names and dimensions MUST NOT be
    hardcoded outside `src/engram/embedding/`.
-3. ADR-008: Agent roles MUST be defined as Python `Protocol` classes,
-   not concrete class inheritance from a base agent.
+3. ADR-008: Agent roles MUST implement the `AgentRole` Protocol (or a
+   subprotocol). `BaseAgent` is a permitted helper class that provides
+   shared lifecycle logic.
 4. ADR-009: No imports of Neo4j, py2neo, neomodel, or neo4j-driver.
    NetworkX is the current graph implementation.
 5. ADR-012: Memory writes MUST pass through the Librarian Gate.

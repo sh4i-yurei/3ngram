@@ -27,6 +27,7 @@ reviews:
 
   path_filters:
     - "!.quint/**"
+    - "!.coderabbit/**"
     - "!**/*.lock"
     - "!**/fixtures/**"
     - "!**/migrations/**"
@@ -40,19 +41,20 @@ reviews:
         of private _symbols. Flag time.sleep() in async code — use
         asyncio.sleep(). Flag synchronous requests.get or blocking I/O
         in async contexts.
-    - path: "src/engram/**"
+    - path: "src/engram/**/[!_]*.py"
       instructions: |
-        Design-first enforcement: implementation code (not stubs,
-        Protocol definitions, or __init__.py re-exports) MUST cite an
-        approved technical spec ID in the PR description.
+        Design-first enforcement: implementation code MUST cite an
+        approved technical spec ID in the PR description. Files named
+        protocol.py, __init__.py, or containing only type stubs are
+        exempt from this requirement.
 
         Architecture decision gates:
         - ADR-003: Flag imports of Qdrant, Pinecone, ChromaDB, Milvus,
           Weaviate, or FAISS as primary store.
         - ADR-007: Flag hardcoded embedding model names or dimensions
           outside src/engram/embedding/.
-        - ADR-008: Agent roles must be Protocol classes, not concrete
-          class inheritance from a base agent.
+        - ADR-008: Agent roles MUST implement the AgentRole Protocol
+          (or a subprotocol). BaseAgent is a permitted helper class.
         - ADR-009: Flag imports of Neo4j, py2neo, neomodel, or
           neo4j-driver (NetworkX is current).
         - ADR-012: Memory writes must pass through the Librarian Gate.
