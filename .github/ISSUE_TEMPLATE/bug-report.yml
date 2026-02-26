@@ -1,0 +1,57 @@
+name: Bug Report
+description: Report a bug or unexpected behavior
+labels: ["bug"]
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: Brief description of the bug
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: Ordered steps to reproduce the issue
+      placeholder: |
+        1. Run `engram serve`
+        2. Send POST to /query with empty body
+        3. Observe 500 error instead of 400
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behavior
+    validations:
+      required: true
+  - type: textarea
+    id: affected-files
+    attributes:
+      label: Affected Files
+      description: Where the bug likely lives (glob patterns)
+      placeholder: src/engram/api/*.py
+  - type: textarea
+    id: error-output
+    attributes:
+      label: Error Output
+      description: Paste error messages or logs
+      render: shell
+  - type: dropdown
+    id: environment
+    attributes:
+      label: Environment
+      options:
+        - WSL2
+        - CI
+        - Docker
+        - Other
+    validations:
+      required: true
