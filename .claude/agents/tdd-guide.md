@@ -70,7 +70,7 @@ pytest --cov=engram --cov-report=term-missing
 - Testing implementation details (internal state) instead of behavior
 - Tests depending on each other (shared state)
 - Asserting too little (passing tests that don't verify anything)
-- Not mocking external dependencies (Qdrant, PostgreSQL, OpenAI, etc.)
+- Not mocking external dependencies (PostgreSQL, pgvector, OpenAI, etc.)
 
 ## Quality Checklist
 
