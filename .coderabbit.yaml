@@ -29,7 +29,6 @@ reviews:
 
   path_filters:
     - "!.quint/**"
-    - "!.coderabbit/**"
     - "!**/*.lock"
     - "!**/fixtures/**"
     - "!**/migrations/**"
