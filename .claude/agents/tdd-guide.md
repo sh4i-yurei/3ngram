@@ -42,7 +42,9 @@ Remove duplication, improve names, optimize -- tests must stay green.
 ### 6. Verify Coverage
 
 ```bash
-pytest --cov=engram --cov-report=term-missing
+pytest
+# When pytest-cov is added to dev deps:
+# pytest --cov=engram --cov-report=term-missing
 # Required: 80%+ branches, functions, lines, statements
 ```
 

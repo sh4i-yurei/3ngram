@@ -55,7 +55,8 @@ When invoked:
 
 ### HIGH — Concurrency
 
-- Shared state without locks — use `threading.Lock`
+- Shared state without locks — use `asyncio.Lock` in async code,
+  `threading.Lock` only in sync/thread-based code
 - Mixing sync/async incorrectly
 - N+1 queries in loops — batch query
 
@@ -74,8 +75,7 @@ When invoked:
 ruff check .                                    # Fast linting
 ruff format --check .                           # Format check
 mypy src/                                       # Type checking (strict)
-bandit -r src/                                  # Security scan
-pytest --cov=engram --cov-report=term-missing   # Test coverage
+pytest                                          # Tests
 ```
 
 ## Review Output Format

@@ -80,7 +80,7 @@ CREATE EXTENSION IF NOT EXISTS vector;
 CREATE TABLE memory_embeddings (
     id bigint GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     memory_id bigint NOT NULL REFERENCES memories(id) ON DELETE CASCADE,
-    embedding vector(768),  -- match embedding model output dimension
+    embedding vector(<dim>),  -- replace <dim> with embedding adapter output dimension
     created_at timestamptz NOT NULL DEFAULT now()
 );
 
