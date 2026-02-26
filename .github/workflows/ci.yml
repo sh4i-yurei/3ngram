@@ -36,6 +36,11 @@ jobs:
     uses: sh4i-yurei/policies-and-standards/.github/workflows/gate-f-security.yml@main
     # blocking: false (default) — security findings are advisory per STD-030
 
+  gate-g-attribution:
+    uses: sh4i-yurei/policies-and-standards/.github/workflows/gate-g-attribution.yml@main
+    with:
+      blocking: false
+
   cspell:
     runs-on: ubuntu-latest
     steps:
