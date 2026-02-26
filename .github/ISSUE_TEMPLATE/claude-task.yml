@@ -1,0 +1,53 @@
+name: Claude Task
+description: Structured task for AI-assisted implementation
+labels: ["needs-triage"]
+body:
+  - type: textarea
+    id: context
+    attributes:
+      label: Claude Context
+      description: What the AI needs to know
+      placeholder: |
+        Relevant files, existing behavior, constraints.
+        Link to CLAUDE.md sections if applicable.
+    validations:
+      required: true
+  - type: textarea
+    id: affected-files
+    attributes:
+      label: Affected Files
+      description: Glob patterns for files that should be modified
+      placeholder: |
+        src/engram/memory/*.py
+        tests/test_memory.py
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Acceptance Criteria
+      description: Use WHEN/THEN format
+      placeholder: |
+        WHEN: user submits empty query
+        THEN: return 400 with "Query cannot be empty"
+    validations:
+      required: true
+  - type: textarea
+    id: constraints
+    attributes:
+      label: Technical Constraints
+      description: Dependencies, performance limits, compatibility
+      placeholder: |
+        - Must not break existing API
+        - Response time < 200ms p95
+  - type: dropdown
+    id: size
+    attributes:
+      label: Size Estimate
+      options:
+        - "xs (< 50 LOC, 1 file)"
+        - "s (50-200 LOC, 1-2 files)"
+        - "m (200-500 LOC, 2-3 files)"
+        - "l (> 500 LOC — needs decomposition)"
+    validations:
+      required: true
