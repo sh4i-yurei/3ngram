@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "quint-code": {
+      "type": "stdio",
+      "command": "/home/mark/.local/bin/quint-code",
+      "args": ["serve"]
+    }
+  }
+}

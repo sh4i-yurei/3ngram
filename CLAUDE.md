@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to Claude Code when working in this repository.
 
 ## What this project is
 
@@ -45,92 +45,11 @@ All in `docs/architecture/adr/`. Key decisions:
 
 Self-healing pattern: aiobreaker circuit breakers + tenacity retries at module boundaries.
 
-## Knowledge base (KB)
+## Knowledge base
 
-The engineering KB is the authoritative source for all standards,
-workflows, and templates. **Always consult the KB before design,
-specification, or implementation work** (STD-056 section 4).
-
-- **Source**: `sh4i-yurei/policies-and-standards` (pinned to `v2.0.0`)
-- **Entry point**: `00_Orientation/Onboarding.md` (STD-015)
-- **Full index**: `INDEX.md` at repo root
-- **Local pointer**: `.kb/ai-context.yaml`
-
-### How to retrieve KB content
-
-```bash
-# Fetch any KB document by path
-gh api repos/sh4i-yurei/policies-and-standards/contents/<path> \
-  --jq '.content' | base64 -d
-
-# Examples
-gh api repos/sh4i-yurei/policies-and-standards/contents/INDEX.md --jq '.content' | base64 -d
-gh api repos/sh4i-yurei/policies-and-standards/contents/05_Dev_Workflows/SDLC_With_AI.md --jq '.content' | base64 -d
-```
-
-Use the `kb-search` skill for topic-based lookup when the exact path is unknown.
-
-### Standards quick-reference
-
-**Governance and orientation:**
-
-| ID | Standard | When to consult |
-|----|----------|----------------|
-| STD-000 | Software Engineering Governance Overview | Root governance reference |
-| STD-010 | Mission Statement | Understanding practice purpose |
-| STD-013 | Core Principles | Values shaping all decisions |
-| STD-015 | Onboarding | Starting a new session or onboarding |
-| STD-016 | Pipeline Phases Overview | Understanding SDLC phase terminology |
-| STD-032 | SDLC with AI | **Authoritative workflow** — consult for any change |
-
-**Design and architecture (current phase):**
-
-| ID | Standard | When to consult |
-|----|----------|----------------|
-| STD-020 | Design-First Development Model | Before any implementation — design is a mandatory gate |
-| STD-021 | System Design Standard | Writing system design artifacts |
-| STD-022 | Module Design Standard | Writing module design artifacts |
-| STD-023 | Technical Specification Standard | Writing specs that authorize implementation |
-| STD-024 | Design Review Checklist | Reviewing any design artifact |
-| STD-047 | Architecture Decision Workflow | Capturing ADRs |
-| STD-055 | Schema Definition Standard | Documenting data/API schemas |
-
-**Engineering standards:**
-
-| ID | Standard | When to consult |
-|----|----------|----------------|
-| STD-004 | AI Assisted Development Standard | Constraints on AI-generated work |
-| STD-005 | Coding Standards and Conventions | Writing or reviewing code |
-| STD-007 | Security and Threat Modeling Standard | Threat model, security design |
-| STD-008 | Testing and Quality Standard | Test strategy and quality gates |
-| STD-043 | SLI/SLO Standard | Defining service level targets |
-| STD-044 | Data Management Standard | Data classification, retention, backups |
-| STD-056 | KB Integration Standard | How repos reference the KB |
-| STD-058 | Agent Skills Standard | Authoring agent skills |
-
-**Workflows:**
-
-| ID | Standard | When to consult |
-|----|----------|----------------|
-| STD-030 | CI/CD Pipeline Model | CI gate definitions and requirements |
-| STD-031 | Git and Branching Workflow | Branch strategy, PR flow |
-| STD-033 | Documentation Change Workflow | Changing governed docs |
-| STD-034 | Design Review Workflow | Executing design reviews |
-| STD-054 | Repo Initialization Workflow | Setting up new repos |
-
-**Templates (in `06_Projects/Templates/`):**
-
-| Path | Purpose |
-|------|---------|
-| `design/system_design_tpl.md` | System design artifact |
-| `design/module_design_tpl.md` | Module design artifact |
-| `design/technical_specification_tpl.md` | Technical specification |
-| `design/schema-definition_tpl.md` | Schema definitions |
-| `architecture/adr_tpl.md` | Architecture Decision Record |
-| `architecture/architecture-options-analysis_tpl.md` | Options analysis |
-| `risk/risk-register_tpl.md` | Risk register |
-| `ai/exec_plan_tpl.md` | ExecPlan for complex work |
-| `ai/ai_context_pack_tpl.md` | AI context pack |
+KB pinned to `v2.0.0` via `.kb/ai-context.yaml`. See `kb-navigation`
+rule for retrieval commands and standards lookup. See `AI_CONTEXT.md`
+for applicable standards and current phase context.
 
 ### Applicable rule packs (STD-048)
 
@@ -140,22 +59,7 @@ Based on 3ngram's scope (API service + data storage + auth/trust boundaries):
 - **STD-051** `rules-data` — Data models, storage, migrations
 - **STD-053** `rules-security` — Authentication, secrets, trust boundaries
 
-Load these rule packs when starting implementation work. Frontend rules
-(STD-049) do not apply — 3ngram has no UI.
-
-## SDLC phases (STD-032 / STD-016)
-
-This project follows the Tier 3 path:
-
-1. **Initiation** — intake, proposal, PRD, charter, roadmap (done)
-2. **Design** — system design, module designs, threat model, SLI/SLO, risk register (current)
-3. **Specification** — technical specs, schema definitions
-4. **Implementation** — code within approved spec boundaries
-5. **Verification** — tests, CI gates, staging validation
-6. **Release** — release checklist, rollback plan, release notes
-7. **Operations** — monitoring, incidents, design postmortems
-
-**Do not skip phases.** Design is a mandatory gate (STD-020 section 2).
+Frontend rules (STD-049) do not apply — 3ngram has no UI.
 
 ## Development commands
 
@@ -181,20 +85,9 @@ cspell "**/*.md"                       # spell check (config: .cspell.json)
 pre-commit run --all-files
 ```
 
-## Agent commands and scripts
-
-Session lifecycle commands are available globally (see `~/CLAUDE.md`):
-`/session-start`, `/session-close`, `/daily-report`, `/pr-ready`.
-
-Cross-project scripts in `~/scripts/` include `ci-status.sh`,
-`ci-logs.sh`, `branch-cleanup.sh`, `branch-status.sh`,
-`session-verify.sh`, `review_parser.py`, and `kb_sync.sh`. See
-`~/CLAUDE.md` for when-to-use guidance.
-
 Project-level scripts (issue #21):
 
 - `scripts/validate-version-refs.sh` — version consistency across docs
-  (Gate B calls this if it exists)
 - `scripts/check-frontmatter.py` — governed doc frontmatter validation
 - `scripts/vulture_whitelist.py` — vulture false positive suppression
 
@@ -229,8 +122,3 @@ Per STD-056, this repo must maintain:
 - `AI_CONTEXT.md` — context pack (standards, rule packs, key files for current scope)
 - `.claude/skills/repo-orientation/SKILL.md` — repo orientation skill
 - `.github/pull_request_template.md` — PR template with KB citations
-
-## Privileged operations
-
-Use `/usr/local/sbin/codex-helper.sh` for privileged operations.
-Do not run raw `sudo`.
