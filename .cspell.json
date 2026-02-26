@@ -24,6 +24,8 @@
     "autobuild",
     "automerge",
     "BAAI",
+    "coderabbit",
+    "CodeRabbit",
     "backfill",
     "BaseSettings",
     "bulkheaded",

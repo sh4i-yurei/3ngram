@@ -1,4 +1,6 @@
+# yamllint disable-line rule:line-length
 # yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+---
 #
 # CodeRabbit configuration for 3ngram (Python agentic RAG memory OS).
 # Gate G — AI review as validator (STD-030).
