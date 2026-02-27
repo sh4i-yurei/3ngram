@@ -78,8 +78,8 @@ Store ExecPlans under `plans/exec_plans/<YYYY-MM-DD>_<short_slug>.md`.
   violating the STD-030 gate matrix.
 - **pr-gate.sh hook** (Global S9): PreToolUse hook that blocks `gh pr create`
   unless /pr-ready breadcrumb exists. Solves recurring /pr-ready skip pattern.
-- **CodeRabbit plugin installed**: `/coderabbit:review` available in Claude Code
-  for in-loop review during development.
+- **CodeRabbit plugin installed** (Global S10): `/coderabbit:review` available in
+  Claude Code for in-loop review during development.
 
 ### Key decisions (Session 9)
 
