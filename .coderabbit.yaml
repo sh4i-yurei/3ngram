@@ -4,6 +4,14 @@
 #
 # CodeRabbit configuration for 3ngram (Python agentic RAG memory OS).
 # Gate G — AI review as validator (STD-030).
+#
+# Architecture: CodeRabbit reviews run LOCALLY via CLI during /pr-ready
+# (before push). GitHub-side auto-review is disabled. Copilot handles
+# PR-side reviews after push.
+#
+# Settings under reviews.* are for manual @coderabbit review fallback only.
+# Settings under path_instructions, tools, and knowledge_base are used by
+# both the CLI and manual GitHub reviews.
 
 language: en-US
 
