@@ -64,7 +64,7 @@ Store ExecPlans under `plans/exec_plans/<YYYY-MM-DD>_<short_slug>.md`.
 - Technical Specification (docs/specs/technical-specification.md) — Stage 3
 - Schema Definitions (docs/design/schemas/) — Stage 3
 
-### Key decisions (Global Session 10)
+### Key decisions (Global Sessions 9–10)
 
 - **AP-05 Phase 2**: Set `required_approving_review_count: 1` on 3ngram and p&s.
   CodeRabbit and Copilot provide automated review feedback; human gives formal
