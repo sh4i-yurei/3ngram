@@ -25,7 +25,7 @@ Store ExecPlans under `plans/exec_plans/<YYYY-MM-DD>_<short_slug>.md`.
 
 **Phase**: Specification (pre-implementation)
 **Current milestone**: M4 (Specification) — in progress
-**Last session**: Session 10 (global) — AP-05 Phase 2 review gate enforcement
+**Last session**: Global Session 10 — AP-05 Phase 2 review gate enforcement
 **Next**: Stage 3 specification work (ExecPlan required first)
 
 ### Completed artifacts
