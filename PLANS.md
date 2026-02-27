@@ -25,8 +25,8 @@ Store ExecPlans under `plans/exec_plans/<YYYY-MM-DD>_<short_slug>.md`.
 
 **Phase**: Specification (pre-implementation)
 **Current milestone**: M4 (Specification) — in progress
-**Last session**: Session 9 — 10-issue sprint across 5 instances, code quality tooling, agent skills, CI improvements
-**Next**: Session 10 — Stage 3 specification work (ExecPlan required first)
+**Last session**: Session 10 (global) — AP-05 Phase 2 review gate enforcement
+**Next**: Stage 3 specification work (ExecPlan required first)
 
 ### Completed artifacts
 
@@ -63,6 +63,23 @@ Store ExecPlans under `plans/exec_plans/<YYYY-MM-DD>_<short_slug>.md`.
 
 - Technical Specification (docs/specs/technical-specification.md) — Stage 3
 - Schema Definitions (docs/design/schemas/) — Stage 3
+
+### Key decisions (Global Session 10)
+
+- **AP-05 Phase 2**: Set `required_approving_review_count: 1` on 3ngram and p&s.
+  CodeRabbit and Copilot provide automated review feedback; human gives formal
+  approval before merge. CodeRabbit NOT a required status check (free tier rate
+  limits would hard-block). STD-054 updated with branch protection requirements.
+- **AP-05 Phase 1 recap** (Global S9): CodeRabbit deployed across all 3 repos
+  (.coderabbit.yaml, .coderabbit/standards.md, gate-g-attribution.yml). STD-030
+  corrected to v1.5.1 (blocking via request_changes_workflow, not commit_status).
+- **Gate A branch protection fix** (Global S9): Removed gate-a-quint from 3ngram
+  required status checks — it was blocking config-only PRs unconditionally,
+  violating the STD-030 gate matrix.
+- **pr-gate.sh hook** (Global S9): PreToolUse hook that blocks `gh pr create`
+  unless /pr-ready breadcrumb exists. Solves recurring /pr-ready skip pattern.
+- **CodeRabbit plugin installed**: `/coderabbit:review` available in Claude Code
+  for in-loop review during development.
 
 ### Key decisions (Session 9)
 
