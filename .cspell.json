@@ -194,7 +194,8 @@
     "worktrees",
     "writability",
     "yamllint",
-    "yurei"
+    "yurei",
+    "PreToolUse"
   ],
   "dictionaries": ["softwareTerms"]
 }
