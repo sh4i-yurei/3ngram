@@ -1,0 +1,9 @@
+name: CI Test
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  test-gate-b:
+    uses: sh4i-yurei/policies-and-standards/.github/workflows/gate-b-docs.yml@main
