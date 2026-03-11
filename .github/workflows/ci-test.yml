@@ -5,5 +5,18 @@ on:
     branches: [main]
 
 jobs:
-  test-gate-b:
+  gate-a-quint:
+    uses: sh4i-yurei/policies-and-standards/.github/workflows/gate-a-quint.yml@main
+
+  gate-b-docs:
     uses: sh4i-yurei/policies-and-standards/.github/workflows/gate-b-docs.yml@main
+
+  gate-c-code:
+    uses: sh4i-yurei/policies-and-standards/.github/workflows/gate-c-code.yml@main
+    with:
+      language: python
+
+  gate-d-tests:
+    uses: sh4i-yurei/policies-and-standards/.github/workflows/gate-d-tests.yml@main
+    with:
+      language: python
