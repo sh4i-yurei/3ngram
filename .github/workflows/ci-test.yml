@@ -5,5 +5,5 @@ on:
     branches: [main]
 
 jobs:
-  gate-e-config:
-    uses: sh4i-yurei/policies-and-standards/.github/workflows/gate-e-config.yml@main
+  gate-f-security:
+    uses: sh4i-yurei/policies-and-standards/.github/workflows/gate-f-security.yml@main
