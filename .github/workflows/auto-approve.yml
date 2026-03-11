@@ -1,22 +1,10 @@
-# Auto Approve Caller Template
+# Auto-approve caller for the reusable workflow in policies-and-standards.
+# Approves PRs when a reviewer has submitted at least one review AND all
+# review threads are resolved.
 #
-# Copy this file to .github/workflows/auto-approve.yml in your project repo.
-#
-# Prerequisites:
-#   Settings > Actions > General > "Allow GitHub Actions to create and
-#   approve pull requests" must be checked. Or via API:
-#     gh api repos/OWNER/REPO/actions/permissions -X PUT \
-#       -F can_approve_pull_request_reviews=true
-#
-# This calls the reusable auto-approve workflow in policies-and-standards.
-# The workflow approves PRs when a reviewer has submitted at least one
-# review AND all review threads are resolved.
-#
-# Two triggers needed because GitHub gates bot-triggered runs
-# (Copilot reviews) as "action_required" with no opt-out. The
-# synchronize trigger fires as the human pusher, bypassing the gate.
-# The reusable workflow guards against premature approval (requires
-# at least one review before approving).
+# Two triggers needed because GitHub gates bot-triggered runs (Copilot
+# reviews) as "action_required" with no opt-out. The synchronize trigger
+# fires as the human pusher, bypassing the gate.
 
 name: Auto Approve
 
