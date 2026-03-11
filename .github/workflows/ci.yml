@@ -34,6 +34,9 @@ jobs:
 
   gate-f-security:
     uses: sh4i-yurei/policies-and-standards/.github/workflows/gate-f-security.yml@main
+    permissions:
+      security-events: write
+      contents: read
     # blocking: false (default) — security findings are advisory per STD-030
 
   gate-g-attribution:

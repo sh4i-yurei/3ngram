@@ -1,0 +1,24 @@
+# Auto-approve caller for the reusable workflow in policies-and-standards.
+# Approves PRs when a reviewer has submitted at least one review AND all
+# review threads are resolved.
+#
+# Two triggers needed because GitHub gates bot-triggered runs (Copilot
+# reviews) as "action_required" with no opt-out. The synchronize trigger
+# fires as the human pusher, bypassing the gate.
+
+name: Auto Approve
+
+on:
+  pull_request_review:
+    types: [submitted]
+    branches: [main]
+  pull_request:
+    types: [synchronize]
+    branches: [main]
+
+jobs:
+  approve:
+    uses: sh4i-yurei/policies-and-standards/.github/workflows/auto-approve.yml@main
+    permissions:
+      pull-requests: write
+      contents: read
