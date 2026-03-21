@@ -97,7 +97,6 @@ CI runs on PRs to `main` via reusable workflows from policies-and-standards:
 
 | Gate | Check |
 |------|-------|
-| A | Quint decision tracking |
 | B | Documentation lint |
 | C | Code lint + format (Python) |
 | D | Tests (Python) |
@@ -111,6 +110,40 @@ CI runs on PRs to `main` via reusable workflows from policies-and-standards:
 - Squash merge only, PR-based workflow
 - All design artifacts use KB templates from policies-and-standards
 - PRs must include KB citations and AI assistance summary (see `.github/pull_request_template.md`)
+
+## TDD-first development
+
+MUST write failing tests BEFORE implementation code for all new features
+and bug fixes.
+
+1. Write test capturing the requirement from acceptance criteria (RED)
+2. Run test — MUST fail (confirms test is meaningful)
+3. Implement minimum code to pass the test (GREEN)
+4. Run test — MUST pass
+5. Refactor if needed (REFACTOR)
+
+NEVER write implementation before corresponding tests exist. Tests from
+requirements, not from implementation — this is the anti-hallucination
+mechanism.
+
+Exceptions: documentation-only changes, config changes, hotfixes where
+the fix is obvious and test is added after.
+
+## Autonomous iteration rules
+
+When iterating on a task (fix → test → fix cycle):
+
+- If >3 consecutive failures on the SAME test or issue: STOP and report
+  the failure pattern with full error context
+- If error count is NOT decreasing across iterations: STOP and report —
+  the loop is stalled, not converging
+- If CodeRabbit flags the same issue after a fix attempt: STOP and
+  report — the fix didn't address the root cause
+- Max 10 iterations per feature before requiring human checkpoint
+- NEVER silently abandon a failing test — either fix it or report it
+
+When stopping: provide a structured report with (1) what was attempted,
+(2) what failed and why, (3) suggested next steps.
 
 ## Required governance files
 

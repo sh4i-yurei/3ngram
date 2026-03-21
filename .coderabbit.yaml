@@ -36,7 +36,6 @@ reviews:
       - DO NOT MERGE
 
   path_filters:
-    - "!.quint/**"
     - "!**/*.lock"
     - "!**/fixtures/**"
     - "!**/migrations/**"

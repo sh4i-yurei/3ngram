@@ -5,8 +5,6 @@ Thumbs.db
 .idea/
 .vscode/
 
-# AI tools — .quint/ is committed per STD-030 Gate A
-
 # Python
 __pycache__/
 *.py[cod]
